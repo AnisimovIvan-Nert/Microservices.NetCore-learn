@@ -1,6 +1,11 @@
+using Microservices.NetCore.Nancy.HelloWorld;
+using Nancy.Owin;
+
 var builder = WebApplication.CreateBuilder(args);
+builder.AllowSynchronousIO();
+
 var app = builder.Build();
-
-app.MapGet("/", () => "Hello World!");
-
+app.UseOwin(pipeline => pipeline.UseNancy());
 app.Run();
+
+
