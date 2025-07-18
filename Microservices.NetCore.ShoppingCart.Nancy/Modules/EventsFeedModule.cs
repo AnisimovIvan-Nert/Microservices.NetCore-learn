@@ -1,6 +1,7 @@
-﻿using Nancy;
+﻿using Microservices.NetCore.ShoppingCart._Shared.EventFeed;
+using Nancy;
 
-namespace Microservices.NetCore.ShoppingCart.Nancy.EventFeed;
+namespace Microservices.NetCore.ShoppingCart.Nancy.Modules;
 
 public sealed class EventsFeedModule : NancyModule
 {

@@ -1,4 +1,4 @@
-namespace Microservices.NetCore.ShoppingCart.Nancy.ShoppingCart;
+namespace Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
 
 public class ShoppingCartItem(
     int productCatalogueId,

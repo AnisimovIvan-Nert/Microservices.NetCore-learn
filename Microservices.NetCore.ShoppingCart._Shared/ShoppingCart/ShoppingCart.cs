@@ -1,6 +1,6 @@
-﻿using Microservices.NetCore.ShoppingCart.Nancy.EventFeed;
+﻿using Microservices.NetCore.ShoppingCart._Shared.EventFeed;
 
-namespace Microservices.NetCore.ShoppingCart.Nancy.ShoppingCart;
+namespace Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
 
 public class ShoppingCart(int userId)
 {

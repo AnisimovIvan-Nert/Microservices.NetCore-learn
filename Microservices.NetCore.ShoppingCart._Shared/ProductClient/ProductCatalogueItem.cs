@@ -1,4 +1,4 @@
-namespace Microservices.NetCore.ShoppingCart.Nancy.ProductClient;
+namespace Microservices.NetCore.ShoppingCart._Shared.ProductClient;
 
 internal class ProductCatalogueItem
 {
