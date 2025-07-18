@@ -1,10 +1,10 @@
-﻿using Microservices.NetCore.Nancy.Shared;
-using Microservices.NetCore.Nancy.ShoppingCart.EventFeed;
-using Microservices.NetCore.Nancy.ShoppingCart.ProductClient;
+﻿using Microservices.NetCore.Shared.Nancy;
+using Microservices.NetCore.ShoppingCart.Nancy.EventFeed;
+using Microservices.NetCore.ShoppingCart.Nancy.ProductClient;
 using Nancy;
 using Nancy.ModelBinding;
 
-namespace Microservices.NetCore.Nancy.ShoppingCart.ShoppingCart;
+namespace Microservices.NetCore.ShoppingCart.Nancy.ShoppingCart;
 
 public sealed class ShoppingCartModule : NancyModule
 {

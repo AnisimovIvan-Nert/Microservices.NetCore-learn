@@ -1,12 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Nancy.HelloWorld", "Microservices.NetCore.Nancy.HelloWorld\Microservices.NetCore.Nancy.HelloWorld.csproj", "{6B82CFE3-1536-431B-8245-BADF8415F872}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.HelloWorld.Nancy", "Microservices.NetCore.HelloWorld.Nancy\Microservices.NetCore.HelloWorld.Nancy.csproj", "{6B82CFE3-1536-431B-8245-BADF8415F872}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.AspNetCore.HelloWorld", "Microservices.NetCore.AspNetCore.HelloWorld\Microservices.NetCore.AspNetCore.HelloWorld.csproj", "{6D49AD24-220E-47B4-88CC-93A40C2888D5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.HelloWorld.AspNetCore", "Microservices.NetCore.HelloWorld.AspNetCore\Microservices.NetCore.HelloWorld.AspNetCore.csproj", "{6D49AD24-220E-47B4-88CC-93A40C2888D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Nancy.ShoppingCart", "Microservices.NetCore.Nancy.ShoppingCart\Microservices.NetCore.Nancy.ShoppingCart.csproj", "{B253C2DE-2F60-42B8-9925-1412E67F640E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.Nancy", "Microservices.NetCore.ShoppingCart.Nancy\Microservices.NetCore.ShoppingCart.Nancy.csproj", "{B253C2DE-2F60-42B8-9925-1412E67F640E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Nancy._Shared", "Microservices.NetCore.Nancy._Shared\Microservices.NetCore.Nancy._Shared.csproj", "{D8A9AAC7-720A-472C-ADDF-89034B246F65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared.Nancy", "Microservices.NetCore._Shared.Nancy\Microservices.NetCore._Shared.Nancy.csproj", "{D8A9AAC7-720A-472C-ADDF-89034B246F65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

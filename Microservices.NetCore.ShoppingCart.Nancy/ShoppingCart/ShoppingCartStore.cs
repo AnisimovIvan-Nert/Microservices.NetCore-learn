@@ -1,4 +1,4 @@
-﻿namespace Microservices.NetCore.Nancy.ShoppingCart.ShoppingCart;
+﻿namespace Microservices.NetCore.ShoppingCart.Nancy.ShoppingCart;
 
 public class ShoppingCartStore : IShoppingCartStore
 {

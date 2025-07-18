@@ -1,6 +1,6 @@
 using Dynamitey;
 
-namespace Microservices.NetCore.Nancy.Shared;
+namespace Microservices.NetCore.Shared.Nancy;
 
 public class QueryParameter<T>(string name, string typeName)
 {

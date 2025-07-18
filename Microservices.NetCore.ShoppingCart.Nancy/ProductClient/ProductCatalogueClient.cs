@@ -1,9 +1,9 @@
-using Microservices.NetCore.Nancy.ShoppingCart.ShoppingCart;
+using Microservices.NetCore.ShoppingCart.Nancy.ShoppingCart;
 using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 
-namespace Microservices.NetCore.Nancy.ShoppingCart.ProductClient;
+namespace Microservices.NetCore.ShoppingCart.Nancy.ProductClient;
 
 public class MemoryProductCatalogueClient : IProductCatalogueClient
 {

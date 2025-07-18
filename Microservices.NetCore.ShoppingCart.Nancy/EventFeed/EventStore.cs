@@ -1,4 +1,4 @@
-﻿namespace Microservices.NetCore.Nancy.ShoppingCart.EventFeed;
+﻿namespace Microservices.NetCore.ShoppingCart.Nancy.EventFeed;
 
 public class EventStore : IEventStore
 {

@@ -1,4 +1,4 @@
-using Microservices.NetCore.Nancy.Shared;
+using Microservices.NetCore.Shared.Nancy;
 using Nancy.Owin;
 
 var builder = WebApplication.CreateBuilder(args);

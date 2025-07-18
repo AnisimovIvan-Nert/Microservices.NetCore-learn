@@ -1,5 +1,5 @@
-using Microservices.NetCore.Nancy.Shared;
-using Microservices.NetCore.Nancy.ShoppingCart.ProductClient;
+using Microservices.NetCore.Shared.Nancy;
+using Microservices.NetCore.ShoppingCart.Nancy.ProductClient;
 using Nancy.Owin;
 
 var builder = WebApplication.CreateBuilder(args);

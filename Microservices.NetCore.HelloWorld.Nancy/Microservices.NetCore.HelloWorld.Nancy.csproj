@@ -9,11 +9,10 @@
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Owin" Version="9.0.7" />
       <PackageReference Include="Nancy" Version="2.0.0" />
-      <PackageReference Include="Polly" Version="8.6.2" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Microservices.NetCore.Nancy._Shared\Microservices.NetCore.Nancy._Shared.csproj" />
+      <ProjectReference Include="..\Microservices.NetCore._Shared.Nancy\Microservices.NetCore._Shared.Nancy.csproj" />
     </ItemGroup>
 
 </Project>

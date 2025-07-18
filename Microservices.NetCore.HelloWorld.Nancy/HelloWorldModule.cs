@@ -1,6 +1,6 @@
 using Nancy;
 
-namespace Microservices.NetCore.Nancy.HelloWorld;
+namespace Microservices.NetCore.HelloWorld.Nancy;
 
 public sealed class HelloWorldModule : NancyModule
 {

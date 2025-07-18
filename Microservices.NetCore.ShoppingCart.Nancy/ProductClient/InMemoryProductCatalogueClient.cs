@@ -1,6 +1,6 @@
-﻿using Microservices.NetCore.Nancy.ShoppingCart.ShoppingCart;
+﻿using Microservices.NetCore.ShoppingCart.Nancy.ShoppingCart;
 
-namespace Microservices.NetCore.Nancy.ShoppingCart.ProductClient;
+namespace Microservices.NetCore.ShoppingCart.Nancy.ProductClient;
 
 public class InMemoryProductCatalogueClient : IProductCatalogueClient
 {

@@ -1,4 +1,4 @@
-namespace Microservices.NetCore.Nancy.ShoppingCart;
+namespace Microservices.NetCore.ShoppingCart.Nancy;
 
 public class Money(string currency, decimal amount)
 {
