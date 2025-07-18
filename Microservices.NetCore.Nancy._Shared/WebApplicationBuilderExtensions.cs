@@ -1,6 +1,8 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Microservices.NetCore.Nancy.HelloWorld;
+namespace Microservices.NetCore.Nancy.Shared;
 
 public static class WebApplicationBuilderExtensions
 {

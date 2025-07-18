@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Nancy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.AspNetCore.HelloWorld", "Microservices.NetCore.AspNetCore.HelloWorld\Microservices.NetCore.AspNetCore.HelloWorld.csproj", "{6D49AD24-220E-47B4-88CC-93A40C2888D5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Nancy.ShoppingCart", "Microservices.NetCore.Nancy.ShoppingCart\Microservices.NetCore.Nancy.ShoppingCart.csproj", "{B253C2DE-2F60-42B8-9925-1412E67F640E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Nancy._Shared", "Microservices.NetCore.Nancy._Shared\Microservices.NetCore.Nancy._Shared.csproj", "{D8A9AAC7-720A-472C-ADDF-89034B246F65}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{6D49AD24-220E-47B4-88CC-93A40C2888D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6D49AD24-220E-47B4-88CC-93A40C2888D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6D49AD24-220E-47B4-88CC-93A40C2888D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
