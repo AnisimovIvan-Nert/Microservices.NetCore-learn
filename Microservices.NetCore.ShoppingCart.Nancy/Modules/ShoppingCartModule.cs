@@ -18,7 +18,6 @@ public sealed class ShoppingCartModule : NancyModule
         : base(ModuleUri)
     {
         const string userIdParameterName = "userid";
-
         var userIdParameter = new QueryParameter<int>(userIdParameterName, "int");
             
         Get($"/{userIdParameter}", parameters =>
