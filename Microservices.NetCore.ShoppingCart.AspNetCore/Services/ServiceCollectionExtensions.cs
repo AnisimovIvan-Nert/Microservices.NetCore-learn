@@ -9,8 +9,8 @@ public static class ServiceCollectionExtensions
     public static IServiceCollection AddShoppingCartServices(this IServiceCollection serviceCollection)
     {
         return serviceCollection
-            .AddScoped<IShoppingCartStore, ShoppingCartStore>()
-            .AddScoped<IProductCatalogueClient, InMemoryProductCatalogueClient>()
-            .AddScoped<IEventStore, EventStore>();
+            .AddEventFeed()
+            .AddProductClient()
+            .AddShoppingCart();
     }
 }

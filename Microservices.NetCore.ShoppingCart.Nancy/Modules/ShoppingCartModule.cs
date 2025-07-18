@@ -1,6 +1,4 @@
 ﻿using Microservices.NetCore.Shared.Nancy;
-using Microservices.NetCore.ShoppingCart._Shared.EventFeed;
-using Microservices.NetCore.ShoppingCart._Shared.ProductClient;
 using Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
 using Nancy;
 using Nancy.ModelBinding;
@@ -11,11 +9,7 @@ public sealed class ShoppingCartModule : NancyModule
 {
     private const string ModuleUri = "/shoppingcart";
         
-    public ShoppingCartModule(
-        IShoppingCartStore shoppingCartStore, 
-        IProductCatalogueClient productCatalogue, 
-        IEventStore eventStore) 
-        : base(ModuleUri)
+    public ShoppingCartModule(IShoppingCartService shoppingCartService) : base(ModuleUri)
     {
         const string userIdParameterName = "userid";
         var userIdParameter = new QueryParameter<int>(userIdParameterName, "int");
@@ -23,7 +17,8 @@ public sealed class ShoppingCartModule : NancyModule
         Get($"/{userIdParameter}", parameters =>
         {
             var userId = (int)userIdParameter.Get(parameters);
-            return shoppingCartStore.Get(userId);
+            
+            return shoppingCartService.Get(userId);
         });
 
         Post($"/{userIdParameter}/items", async (parameters, _) =>
@@ -31,12 +26,7 @@ public sealed class ShoppingCartModule : NancyModule
             var productCatalogueIds = this.Bind<int[]>();
             var userId = (int)userIdParameter.Get(parameters);
                 
-            var shoppingCart = shoppingCartStore.Get(userId);
-            var shoppingCartItems = await productCatalogue.GetShoppingCartItems(productCatalogueIds);
-            shoppingCart.AddItems(shoppingCartItems, eventStore);
-            shoppingCartStore.Save(shoppingCart);
-                
-            return shoppingCart;
+            return await shoppingCartService.PostItems(userId, productCatalogueIds);
         });
 
         Delete($"/{userIdParameter}/items", parameters =>
@@ -44,11 +34,7 @@ public sealed class ShoppingCartModule : NancyModule
             var productCatalogueIds = this.Bind<int[]>();
             var userId = (int)userIdParameter.Get(parameters);
 
-            var shoppingCart = shoppingCartStore.Get(userId);
-            shoppingCart.RemoveItems(productCatalogueIds);
-            shoppingCartStore.Save(shoppingCart);
-
-            return shoppingCart;
+            return shoppingCartService.DeleteItems(userId, productCatalogueIds);
         });
     }
 }

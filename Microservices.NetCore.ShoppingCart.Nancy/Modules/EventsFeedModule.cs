@@ -7,7 +7,7 @@ public sealed class EventsFeedModule : NancyModule
 {
     private const string ModuleUri = "/events";
 
-    public EventsFeedModule(IEventStore eventStore) : base(ModuleUri)
+    public EventsFeedModule(IEventFeed eventFeed) : base(ModuleUri)
     {
         Get("/", _ =>
         {
@@ -19,7 +19,7 @@ public sealed class EventsFeedModule : NancyModule
             if (long.TryParse(end, out long endEvent) == false)
                 endEvent = long.MaxValue;
 
-            return eventStore.GetEvents(startEvent, endEvent);
+            return eventFeed.Get(startEvent, endEvent);
         });
     }
 }

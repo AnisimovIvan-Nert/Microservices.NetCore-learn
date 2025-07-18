@@ -11,7 +11,7 @@ public class ShoppingCart(int userId)
     public int UserId { get; } = userId;
     public IEnumerable<ShoppingCartItem> Items => _items;
 
-    public void AddItems(IEnumerable<ShoppingCartItem> shoppingCartItems, IEventStore eventStore)
+    public void AddItems(IEnumerable<ShoppingCartItem> shoppingCartItems, IEventFeed eventFeed)
     {
         foreach (var item in shoppingCartItems)
         {
@@ -19,7 +19,7 @@ public class ShoppingCart(int userId)
                 continue;
                 
             var content = new { UserId, item };
-            eventStore.Raise(AddedEventName, content);
+            eventFeed.Raise(AddedEventName, content);
         }
     }
 
