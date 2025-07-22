@@ -16,7 +16,7 @@ public sealed class ShoppingCartModule : NancyModule
             
         Get($"/{userIdParameter}", parameters =>
         {
-            var userId = (int)userIdParameter.Get(parameters);
+            int userId = userIdParameter.Get(parameters);
             
             return shoppingCartService.Get(userId);
         });
@@ -24,7 +24,7 @@ public sealed class ShoppingCartModule : NancyModule
         Post($"/{userIdParameter}/items", async (parameters, _) =>
         {
             var productCatalogueIds = this.Bind<int[]>();
-            var userId = (int)userIdParameter.Get(parameters);
+            int userId = userIdParameter.Get(parameters);
                 
             return await shoppingCartService.PostItems(userId, productCatalogueIds);
         });
@@ -32,7 +32,7 @@ public sealed class ShoppingCartModule : NancyModule
         Delete($"/{userIdParameter}/items", parameters =>
         {
             var productCatalogueIds = this.Bind<int[]>();
-            var userId = (int)userIdParameter.Get(parameters);
+            int userId = userIdParameter.Get(parameters);
 
             return shoppingCartService.DeleteItems(userId, productCatalogueIds);
         });

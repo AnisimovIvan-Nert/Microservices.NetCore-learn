@@ -4,7 +4,7 @@ using Microservices.NetCore.ShoppingCart._Shared.ProductClient;
 namespace Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
 
 public class ShoppingCartService(
-    IShoppingCartStore shoppingCartStore, 
+    IShoppingCartStore shoppingCartStore,
     IProductCatalogueClient productCatalogue,
     IEventFeed eventFeed) 
     : IShoppingCartService

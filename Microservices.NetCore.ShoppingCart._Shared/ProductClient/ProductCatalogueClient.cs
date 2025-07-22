@@ -1,5 +1,5 @@
+using System.Text.Json;
 using Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
-using Newtonsoft.Json;
 using Polly;
 using Polly.Retry;
 
@@ -7,7 +7,8 @@ namespace Microservices.NetCore.ShoppingCart._Shared.ProductClient;
 
 public class MemoryProductCatalogueClient : IProductCatalogueClient
 {
-    private const string ProductCatalogueBaseUrl = "";
+    //TODO link uri
+    private const string ProductCatalogueBaseUri = "";
     private const string ProductPathTemplate = "/products?productIds=[{0}]";
 
     public Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogueIds)
@@ -28,7 +29,7 @@ public class MemoryProductCatalogueClient : IProductCatalogueClient
         var productsResource = string.Format(ProductPathTemplate, comaSeparatedProductCatalogueIds);
 
         using var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(ProductCatalogueBaseUrl);
+        httpClient.BaseAddress = new Uri(ProductCatalogueBaseUri);
         return await httpClient.GetAsync(productsResource);
     }
 
@@ -37,7 +38,7 @@ public class MemoryProductCatalogueClient : IProductCatalogueClient
     {
         response.EnsureSuccessStatusCode();
         var responseContent = await response.Content.ReadAsStringAsync();
-        var products = JsonConvert.DeserializeObject<List<ProductCatalogueItem>>(responseContent);
+        var products = JsonSerializer.Deserialize<List<ProductCatalogueItem>>(responseContent) ?? [];
         return products.Select(ConvertToShoppingCartItem);
     }
 
