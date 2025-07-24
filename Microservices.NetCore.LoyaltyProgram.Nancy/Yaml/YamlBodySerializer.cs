@@ -1,32 +1,8 @@
 using Nancy;
-using Nancy.ModelBinding;
 using Nancy.Responses.Negotiation;
 using YamlDotNet.Serialization;
 
-namespace Microservices.NetCore.LoyaltyProgram.Nancy;
-
-public static class YamlMediaType
-{
-    public const string Type = "application/" + SybType;
-    public const string SybType = "yaml";
-
-    public static bool IsYaml(this MediaType mediaType)
-    {
-        return mediaType.ToString().EndsWith(SybType);
-    }
-}
-
-public class YamlBodyDeserializer : IBodyDeserializer
-{
-    public bool CanDeserialize(MediaRange mediaRange, BindingContext context) => mediaRange.Subtype.IsYaml();
-
-    public object Deserialize(MediaRange mediaRange, Stream bodyStream, BindingContext context)
-    {
-        var yamlDeserializer = new Deserializer();
-        var reader = new StreamReader(bodyStream);
-        return yamlDeserializer.Deserialize(reader, context.DestinationType) ?? throw new InvalidOperationException();
-    }
-}
+namespace Microservices.NetCore.LoyaltyProgram.Nancy.Yaml;
 
 public class YamlBodySerializer : IResponseProcessor
 {

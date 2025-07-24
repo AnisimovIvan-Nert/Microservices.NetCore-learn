@@ -18,6 +18,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Loyal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram.Nancy.EventConsumer", "Microservices.NetCore.LoyaltyProgram.Nancy.EventConsumer\Microservices.NetCore.LoyaltyProgram.Nancy.EventConsumer.csproj", "{1B648A67-2D11-44FD-A6D3-AAC53C2CF04D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram._Shared", "Microservices.NetCore.LoyaltyProgram._Shared\Microservices.NetCore.LoyaltyProgram._Shared.csproj", "{A34022CC-EFFE-48B1-A915-68D326CF258D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -60,5 +62,9 @@ Global
 		{1B648A67-2D11-44FD-A6D3-AAC53C2CF04D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B648A67-2D11-44FD-A6D3-AAC53C2CF04D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B648A67-2D11-44FD-A6D3-AAC53C2CF04D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

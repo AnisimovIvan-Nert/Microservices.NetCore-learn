@@ -11,7 +11,12 @@ public class Program
         builder.AllowSynchronousIO();
 
         var app = builder.Build();
-        app.UseOwin().UseNancy();
+        
+        app.UseOwin(pipeline =>
+        {
+            pipeline.UseNancy();
+        });
+        
         app.Run();
     }
 }
