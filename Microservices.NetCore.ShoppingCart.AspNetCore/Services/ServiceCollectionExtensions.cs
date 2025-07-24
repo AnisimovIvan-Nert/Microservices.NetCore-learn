@@ -13,4 +13,24 @@ public static class ServiceCollectionExtensions
             .AddProductClient()
             .AddShoppingCart();
     }
+    
+    private static IServiceCollection AddEventFeed(this IServiceCollection serviceCollection)
+    {
+        return serviceCollection
+            .AddScoped<IEventFeed, EventFeed>()
+            .AddScoped<IEventStore, EventStore>();
+    }
+    
+    private static IServiceCollection AddProductClient(this IServiceCollection serviceCollection)
+    {
+        return serviceCollection
+            .AddScoped<IProductCatalogueClient, InMemoryProductCatalogueClient>();
+    }
+    
+    private static IServiceCollection AddShoppingCart(this IServiceCollection serviceCollection)
+    {
+        return serviceCollection
+            .AddScoped<IShoppingCartService, ShoppingCartService>()
+            .AddScoped<IShoppingCartStore, ShoppingCartStore>();
+    }
 }
