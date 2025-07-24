@@ -1,11 +1,8 @@
 using Microservices.NetCore.Shared.Nancy;
-using Microservices.NetCore.ShoppingCart._Shared.ProductClient;
 using Nancy.Owin;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.AllowSynchronousIO();
-
-builder.Services.AddScoped<IProductCatalogueClient, InMemoryProductCatalogueClient>();
 
 var app = builder.Build();
 
