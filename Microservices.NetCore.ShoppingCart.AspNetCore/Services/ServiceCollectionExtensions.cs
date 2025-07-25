@@ -1,4 +1,4 @@
-using Microservices.NetCore.ShoppingCart._Shared.EventFeed;
+using Microservices.NetCore._Shared.AspNetCore.EventFeed;
 using Microservices.NetCore.ShoppingCart._Shared.ProductClient;
 using Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
 
@@ -12,13 +12,6 @@ public static class ServiceCollectionExtensions
             .AddEventFeed()
             .AddProductClient()
             .AddShoppingCart();
-    }
-    
-    private static IServiceCollection AddEventFeed(this IServiceCollection serviceCollection)
-    {
-        return serviceCollection
-            .AddScoped<IEventFeed, EventFeed>()
-            .AddScoped<IEventStore, EventStore>();
     }
     
     private static IServiceCollection AddProductClient(this IServiceCollection serviceCollection)

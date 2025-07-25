@@ -1,4 +1,4 @@
-﻿using Microservices.NetCore.ShoppingCart._Shared.EventFeed;
+﻿using Microservices.NetCore._Shared.EventFeed;
 
 namespace Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
 
@@ -19,7 +19,7 @@ public class ShoppingCart(int userId)
                 continue;
                 
             var content = new { UserId, item };
-            eventFeed.Raise(AddedEventName, content);
+            _ = eventFeed.Raise(AddedEventName, content);
         }
     }
 

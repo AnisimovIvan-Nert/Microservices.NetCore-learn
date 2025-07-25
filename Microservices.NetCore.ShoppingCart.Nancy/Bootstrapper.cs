@@ -1,4 +1,4 @@
-using Microservices.NetCore.ShoppingCart._Shared.EventFeed;
+using Microservices.NetCore.Shared.Nancy.EventFeed;
 using Microservices.NetCore.ShoppingCart._Shared.ProductClient;
 using Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
 using Nancy;
@@ -11,9 +11,8 @@ public class Bootstrapper : DefaultNancyBootstrapper
     protected override void ConfigureApplicationContainer(TinyIoCContainer container)
     {
         base.ConfigureApplicationContainer(container);
-        
-        container.Register<IEventStore, EventStore>();
-        container.Register<IEventFeed, EventFeed>();
+
+        container.RegisterEventFeed();
         container.Register<IShoppingCartService, ShoppingCartService>();
         container.Register<IShoppingCartStore, ShoppingCartStore>();
         container.Register<IProductCatalogueClient, InMemoryProductCatalogueClient>();

@@ -1,4 +1,4 @@
-﻿namespace Microservices.NetCore.ShoppingCart._Shared.EventFeed;
+﻿namespace Microservices.NetCore._Shared.EventFeed;
 
 public readonly struct Event(
     long sequenceNumber,

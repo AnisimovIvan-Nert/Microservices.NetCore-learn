@@ -12,6 +12,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Microservices.NetCore.ShoppingCart._Shared\Microservices.NetCore.ShoppingCart._Shared.csproj" />
+      <ProjectReference Include="..\Microservices.NetCore._Shared.AspNetCore\Microservices.NetCore._Shared.AspNetCore.csproj" />
     </ItemGroup>
 
 </Project>

@@ -1,6 +1,8 @@
+using Microservices.NetCore._Shared.EventFeed;
+
 namespace Microservices.NetCore.LoyaltyProgram.Shared.Users;
 
-public class UsersService(IUsersStore usersStore) : IUsersService
+public class UsersService(IUsersStore usersStore, IEventFeed eventFeed) : IUsersService
 {
     public ValueTask<IEnumerable<LoyaltyProgramUser>> GetAll()
     {
@@ -17,13 +19,16 @@ public class UsersService(IUsersStore usersStore) : IUsersService
         return usersStore.TryGet(id);
     }
 
-    public ValueTask<int> Register(LoyaltyProgramUser user)
+    public async ValueTask<int> Register(LoyaltyProgramUser user)
     {
-        return usersStore.Create(user);
+        var id = await usersStore.Create(user);
+        _ = eventFeed.Raise("User registered", user);
+        return id;
     }
 
     public async ValueTask Update(int id, LoyaltyProgramUser value)
     {
         await usersStore.Update(id, value);
+        _ = eventFeed.Raise("User updated", value);
     }
 }

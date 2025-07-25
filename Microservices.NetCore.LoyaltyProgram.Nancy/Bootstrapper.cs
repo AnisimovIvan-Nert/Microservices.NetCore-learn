@@ -1,4 +1,5 @@
 using Microservices.NetCore.LoyaltyProgram.Shared.Users;
+using Microservices.NetCore.Shared.Nancy.EventFeed;
 using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.TinyIoc;
@@ -14,6 +15,7 @@ public class Bootstrapper : DefaultNancyBootstrapper
     {
         base.ConfigureApplicationContainer(container);
         
+        container.RegisterEventFeed();
         container.Register<IUsersService, UsersService>();
         container.Register<IUsersStore, UsersStore>();
     }
