@@ -24,6 +24,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Loyal
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram._Shared.ApiGatewayMock", "Microservices.NetCore.LoyaltyProgram._Shared.ApiGatewayMock\Microservices.NetCore.LoyaltyProgram._Shared.ApiGatewayMock.csproj", "{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram.AspNetCore", "Microservices.NetCore.LoyaltyProgram.AspNetCore\Microservices.NetCore.LoyaltyProgram.AspNetCore.csproj", "{8D096FCB-870A-42DC-B33B-26D3B650557B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,5 +80,9 @@ Global
 		{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

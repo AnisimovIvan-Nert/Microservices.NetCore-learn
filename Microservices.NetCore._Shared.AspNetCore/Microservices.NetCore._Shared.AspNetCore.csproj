@@ -16,4 +16,8 @@
       <ProjectReference Include="..\Microservices.NetCore._Shared\Microservices.NetCore._Shared.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.3.0" />
+    </ItemGroup>
+
 </Project>
