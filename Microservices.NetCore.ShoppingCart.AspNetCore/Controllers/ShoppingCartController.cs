@@ -4,22 +4,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace Microservices.NetCore.ShoppingCart.AspNetCore.Controllers;
 
 [ApiController]
-[Route("shoppingcart")]
+[Route("shoppingcart/{id:int}")]
 public class ShoppingCartController(IShoppingCartService shoppingCartService) : ControllerBase
 {
-    [HttpGet("{id:int}")]
+    [HttpGet]
     public Shared.ShoppingCart.ShoppingCart GetShoppingCart(int id)
     {
         return shoppingCartService.Get(id);
     }
     
-    [HttpPost("{id:int}/items")]
+    [HttpPost("items")]
     public async Task<Shared.ShoppingCart.ShoppingCart> PostItemsToCart(int id, int[] itemIds)
     {
         return await shoppingCartService.PostItems(id, itemIds);
     }
 
-    [HttpDelete("{id:int}/items")]
+    [HttpDelete("items")]
     public Shared.ShoppingCart.ShoppingCart DeleteItemsFromCart(int id, int[] itemsIds)
     {
         return shoppingCartService.DeleteItems(id, itemsIds);

@@ -3,7 +3,7 @@
 public class EventStore : IEventStore
 {
     private static long _currentSequenceNumber;
-    private static readonly IList<Event> _database = new List<Event>();
+    private static readonly List<Event> _database = [];
 
     public ValueTask<IEnumerable<Event>> GetEvents(long firstEvent, long lastEvent)
     {
