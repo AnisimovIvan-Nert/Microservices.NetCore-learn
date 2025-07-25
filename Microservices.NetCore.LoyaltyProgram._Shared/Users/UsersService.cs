@@ -1,4 +1,4 @@
-using Microservices.NetCore._Shared.EventFeed;
+using Microservices.NetCore.Shared.EventFeed;
 
 namespace Microservices.NetCore.LoyaltyProgram.Shared.Users;
 

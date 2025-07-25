@@ -1,4 +1,4 @@
-namespace Microservices.NetCore._Shared.EventFeed;
+namespace Microservices.NetCore.Shared.EventFeed;
 
 public interface IEventFeed
 {

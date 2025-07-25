@@ -4,13 +4,8 @@
         <TargetFramework>net9.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <RootNamespace>Microservices.NetCore.Shared.AspNetCore</RootNamespace>
     </PropertyGroup>
-
-    <ItemGroup>
-      <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
-        <HintPath>..\..\..\..\..\..\usr\share\dotnet\shared\Microsoft.AspNetCore.App\9.0.7\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-      </Reference>
-    </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\Microservices.NetCore._Shared\Microservices.NetCore._Shared.csproj" />

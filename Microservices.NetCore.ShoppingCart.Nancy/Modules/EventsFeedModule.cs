@@ -1,4 +1,4 @@
-﻿using Microservices.NetCore._Shared.EventFeed;
+﻿using Microservices.NetCore.Shared.EventFeed;
 using Microservices.NetCore.Shared.Nancy.EventFeed;
 
 namespace Microservices.NetCore.ShoppingCart.Nancy.Modules;

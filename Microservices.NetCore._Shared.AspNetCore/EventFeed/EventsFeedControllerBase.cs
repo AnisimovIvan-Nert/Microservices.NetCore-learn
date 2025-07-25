@@ -1,7 +1,7 @@
-using Microservices.NetCore._Shared.EventFeed;
+using Microservices.NetCore.Shared.EventFeed;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Microservices.NetCore._Shared.AspNetCore.EventFeed;
+namespace Microservices.NetCore.Shared.AspNetCore.EventFeed;
 
 [ApiController]
 [Route("events")]

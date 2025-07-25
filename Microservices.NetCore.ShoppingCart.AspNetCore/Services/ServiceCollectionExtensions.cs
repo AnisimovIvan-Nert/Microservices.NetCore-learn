@@ -1,4 +1,4 @@
-using Microservices.NetCore._Shared.AspNetCore.EventFeed;
+using Microservices.NetCore.Shared.AspNetCore.EventFeed;
 using Microservices.NetCore.ShoppingCart.Shared.ProductClient;
 using Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
 

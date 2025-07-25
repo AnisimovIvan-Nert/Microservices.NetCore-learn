@@ -1,5 +1,5 @@
-using Microservices.NetCore._Shared.AspNetCore.EventFeed;
-using Microservices.NetCore._Shared.EventFeed;
+using Microservices.NetCore.Shared.AspNetCore.EventFeed;
+using Microservices.NetCore.Shared.EventFeed;
 
 namespace Microservices.NetCore.LoyaltyProgram.AspNetCore.Controllers;
 
