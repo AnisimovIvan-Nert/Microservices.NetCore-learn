@@ -1,5 +1,5 @@
 ﻿using Microservices.NetCore.Shared.Nancy;
-using Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
+using Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
 using Nancy;
 using Nancy.ModelBinding;
 

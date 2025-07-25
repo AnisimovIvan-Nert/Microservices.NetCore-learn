@@ -1,6 +1,6 @@
 using Microservices.NetCore.Shared.Nancy.EventFeed;
-using Microservices.NetCore.ShoppingCart._Shared.ProductClient;
-using Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
+using Microservices.NetCore.ShoppingCart.Shared.ProductClient;
+using Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
 using Nancy;
 using Nancy.TinyIoc;
 

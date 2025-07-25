@@ -1,4 +1,4 @@
-namespace Microservices.NetCore.ShoppingCart._Shared.ShoppingCart;
+namespace Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
 
 public interface IShoppingCartService
 {
