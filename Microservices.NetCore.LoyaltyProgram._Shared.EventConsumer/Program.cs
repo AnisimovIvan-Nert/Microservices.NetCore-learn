@@ -1,4 +1,4 @@
-namespace Microservices.NetCore.LoyaltyProgram.Nancy.EventConsumer;
+namespace Microservices.NetCore.LoyaltyProgram.Shared.EventConsumer;
 
 public class Program
 {

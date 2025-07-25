@@ -1,4 +1,4 @@
-namespace Microservices.NetCore.LoyaltyProgram.Nancy.ApiGatewayMock;
+namespace Microservices.NetCore.LoyaltyProgram.Shared.ApiGatewayMock;
 
 public class LoyaltyProgramSettings
 {

@@ -1,7 +1,7 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
 
-namespace Microservices.NetCore.LoyaltyProgram.Nancy.EventConsumer;
+namespace Microservices.NetCore.LoyaltyProgram.Shared.EventConsumer;
 
 public class EventSubscriberService(ILogger<EventSubscriberService> logger) : BackgroundService
 {
