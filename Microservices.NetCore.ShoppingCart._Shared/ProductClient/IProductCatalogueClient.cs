@@ -4,5 +4,5 @@ namespace Microservices.NetCore.ShoppingCart.Shared.ProductClient;
 
 public interface IProductCatalogueClient
 {
-    Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogueIds);
+    ValueTask<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(params int[] productCatalogueIds);
 }

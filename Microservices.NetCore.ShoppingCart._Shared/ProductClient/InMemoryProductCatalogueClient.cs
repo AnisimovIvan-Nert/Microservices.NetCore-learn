@@ -27,9 +27,9 @@ public class InMemoryProductCatalogueClient : IProductCatalogueClient
         }
     }
 
-    public Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogueIds)
+    public ValueTask<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(params int[] productCatalogueIds)
     {
-        return Task.FromResult(GetItemsFromCatalogue(productCatalogueIds));
+        return ValueTask.FromResult(GetItemsFromCatalogue(productCatalogueIds));
     }
 
     private static IEnumerable<ShoppingCartItem> GetItemsFromCatalogue(int[] productCatalogueIds)

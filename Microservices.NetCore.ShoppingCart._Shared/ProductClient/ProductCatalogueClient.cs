@@ -1,39 +1,46 @@
 using System.Text.Json;
+using Microservices.NetCore.Shared.Cache;
 using Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
 using Polly;
 using Polly.Retry;
 
 namespace Microservices.NetCore.ShoppingCart.Shared.ProductClient;
 
-public class MemoryProductCatalogueClient : IProductCatalogueClient
+public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueClient
 {
     //TODO link uri
-    private const string ProductCatalogueBaseUri = "";
-    private const string ProductPathTemplate = "/products?productIds=[{0}]";
+    private const string ProductCatalogueBaseUri = "http://localhost:5267";
+    private const string ProductPathTemplate = "/products?productIds={0}";
 
-    public Task<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(int[] productCatalogueIds)
+    public ValueTask<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(params int[] productCatalogueIds)
     {
         var retryPolicy = CreateRetryPolicy();
-        return retryPolicy.ExecuteAsync(async () => await GetItemsFromCatalogueService(productCatalogueIds));
+        var task = retryPolicy.ExecuteAsync(async () => await GetItemsFromCatalogueService(productCatalogueIds));
+        return new ValueTask<IEnumerable<ShoppingCartItem>>(task);
     }
 
-    private static async Task<IEnumerable<ShoppingCartItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
+    private async ValueTask<IEnumerable<ShoppingCartItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
     {
         var response = await RequestProductFromProductCatalogue(productCatalogueIds);
         return await ConvertToShoppingCartItems(response);
     }
 
-    private static async Task<HttpResponseMessage> RequestProductFromProductCatalogue(int[] productCatalogueIds)
+    private async ValueTask<HttpResponseMessage> RequestProductFromProductCatalogue(int[] productCatalogueIds)
     {
         var comaSeparatedProductCatalogueIds = string.Join(",", productCatalogueIds);
         var productsResource = string.Format(ProductPathTemplate, comaSeparatedProductCatalogueIds);
 
+        if (cacheStore.TryGet(productsResource) is HttpResponseMessage cachedResponse)
+            return cachedResponse;
+
         using var httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri(ProductCatalogueBaseUri);
-        return await httpClient.GetAsync(productsResource);
+        var response = await httpClient.GetAsync(productsResource);
+        CacheResponse(productsResource, response);
+        return response;
     }
 
-    private static async Task<IEnumerable<ShoppingCartItem>> ConvertToShoppingCartItems(
+    private static async ValueTask<IEnumerable<ShoppingCartItem>> ConvertToShoppingCartItems(
         HttpResponseMessage response)
     {
         response.EnsureSuccessStatusCode();
@@ -46,6 +53,13 @@ public class MemoryProductCatalogueClient : IProductCatalogueClient
     {
         var id = int.Parse(item.ProductId);
         return new ShoppingCartItem(id, item.ProductName, item.ProductDescription, item.Price);
+    }
+    
+    private void CacheResponse(string resource, HttpResponseMessage response)
+    {
+        var maxAge = response.Headers.CacheControl?.MaxAge;
+        if (maxAge != null)
+            cacheStore.Add(resource, response, maxAge.Value);
     }
 
     private static AsyncRetryPolicy CreateRetryPolicy()

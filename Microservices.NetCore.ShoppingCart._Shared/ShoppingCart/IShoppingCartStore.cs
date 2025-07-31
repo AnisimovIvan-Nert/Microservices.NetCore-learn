@@ -2,6 +2,6 @@
 
 public interface IShoppingCartStore
 {
-    ShoppingCart Get(int userId);
-    void Save(ShoppingCart shoppingCart);
+    ValueTask<ShoppingCart> Get(int userId);
+    ValueTask Save(ShoppingCart shoppingCart);
 }

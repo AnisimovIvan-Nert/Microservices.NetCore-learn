@@ -9,25 +9,25 @@ public class ShoppingCartService(
     IEventFeed eventFeed) 
     : IShoppingCartService
 {
-    public ShoppingCart Get(int id)
+    public ValueTask<ShoppingCart> Get(int id)
     {
         return shoppingCartStore.Get(id);
     }
     
-    public async Task<ShoppingCart> PostItems(int id, int[] itemIds)
+    public async ValueTask<ShoppingCart> PostItems(int id, int[] itemIds)
     {
-        var shoppingCart = shoppingCartStore.Get(id);
+        var shoppingCart = await shoppingCartStore.Get(id);
         var shoppingCartItems = await productCatalogue.GetShoppingCartItems(itemIds);
         shoppingCart.AddItems(shoppingCartItems, eventFeed);
-        shoppingCartStore.Save(shoppingCart);
+        await shoppingCartStore.Save(shoppingCart);
         return shoppingCart;
     }
     
-    public ShoppingCart DeleteItems(int id, int[] itemsIds)
+    public async ValueTask<ShoppingCart> DeleteItems(int id, int[] itemsIds)
     {
-        var shoppingCart = shoppingCartStore.Get(id);
+        var shoppingCart = await shoppingCartStore.Get(id);
         shoppingCart.RemoveItems(itemsIds);
-        shoppingCartStore.Save(shoppingCart);
+        await shoppingCartStore.Save(shoppingCart);
         return shoppingCart;
     }
 }

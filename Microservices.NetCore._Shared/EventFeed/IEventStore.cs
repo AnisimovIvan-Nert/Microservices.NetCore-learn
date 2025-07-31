@@ -1,7 +1,10 @@
-﻿namespace Microservices.NetCore.Shared.EventFeed;
+﻿using Microservices.NetCore.Shared.EventFeed.Implementation;
+
+namespace Microservices.NetCore.Shared.EventFeed;
 
 public interface IEventStore
 {
-    ValueTask<IEnumerable<Event>> GetEvents(long firstEvent, long lastEvent);
+    internal void SetEventType(string eventType);
+    ValueTask<IEnumerable<Event>> GetEvents(long firstNumber, long lastNumber);
     ValueTask Raise(string eventName, object content);
 }

@@ -1,4 +1,5 @@
 using Microservices.NetCore.Shared.EventFeed;
+using Microservices.NetCore.Shared.EventFeed.Implementation;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Microservices.NetCore.Shared.AspNetCore.EventFeed;
