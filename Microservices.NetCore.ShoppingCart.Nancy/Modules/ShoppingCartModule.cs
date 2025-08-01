@@ -13,7 +13,9 @@ public sealed class ShoppingCartModule : NancyModule
     {
         const string userIdParameterName = "userid";
         var userIdParameter = new QueryParameter<int>(userIdParameterName, "int");
-            
+         
+        Post("", _ => shoppingCartService.Create());
+        
         Get($"/{userIdParameter}", parameters =>
         {
             int userId = userIdParameter.Get(parameters);

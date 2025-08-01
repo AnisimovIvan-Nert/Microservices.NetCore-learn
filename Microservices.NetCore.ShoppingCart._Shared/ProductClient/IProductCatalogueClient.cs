@@ -1,8 +1,6 @@
-﻿using Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
-
-namespace Microservices.NetCore.ShoppingCart.Shared.ProductClient;
+﻿namespace Microservices.NetCore.ShoppingCart.Shared.ProductClient;
 
 public interface IProductCatalogueClient
 {
-    ValueTask<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(params int[] productCatalogueIds);
+    ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItems(params int[] productCatalogueIds);
 }

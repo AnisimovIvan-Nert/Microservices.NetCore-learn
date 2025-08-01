@@ -2,6 +2,7 @@
 
 public interface IShoppingCartStore
 {
-    ValueTask<ShoppingCart> Get(int userId);
+    ValueTask<ShoppingCart> Create();
+    ValueTask<ShoppingCart> Get(int id);
     ValueTask Save(ShoppingCart shoppingCart);
 }

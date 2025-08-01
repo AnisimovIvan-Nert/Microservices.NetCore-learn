@@ -9,6 +9,11 @@ public class ShoppingCartService(
     IEventFeed eventFeed) 
     : IShoppingCartService
 {
+    public ValueTask<ShoppingCart> Create()
+    {
+        return shoppingCartStore.Create();
+    }
+
     public ValueTask<ShoppingCart> Get(int id)
     {
         return shoppingCartStore.Get(id);
@@ -17,8 +22,8 @@ public class ShoppingCartService(
     public async ValueTask<ShoppingCart> PostItems(int id, int[] itemIds)
     {
         var shoppingCart = await shoppingCartStore.Get(id);
-        var shoppingCartItems = await productCatalogue.GetShoppingCartItems(itemIds);
-        shoppingCart.AddItems(shoppingCartItems, eventFeed);
+        var productCatalogueItems = await productCatalogue.GetProductCatalogueItems(itemIds);
+        shoppingCart.AddItems(productCatalogueItems, eventFeed);
         await shoppingCartStore.Save(shoppingCart);
         return shoppingCart;
     }

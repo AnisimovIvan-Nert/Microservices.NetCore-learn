@@ -6,65 +6,92 @@ namespace Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
 public class ShoppingCartStore : IShoppingCartStore
 {
     //TODO ling connection string
-    private const string ConnectionString = "";
+    private const string ConnectionString = "server=localhost;uid=user;pwd=password;database=ShoppingCart";
 
-    public async ValueTask<ShoppingCart> Get(int userId)
+    public async ValueTask<ShoppingCart> Create()
+    {
+        const string createShoppingCartSql =
+            """
+            INSERT INTO ShoppingCart VALUES ();
+            SELECT LAST_INSERT_ID();
+            """;
+
+        await using var connection = new MySqlConnection(ConnectionString);
+        var id = await connection.QuerySingleAsync<int>(createShoppingCartSql);
+        return new ShoppingCart(id);
+    }
+
+    public async ValueTask<ShoppingCart> Get(int id)
     {
         var @params = new
         {
-            UserId = userId
+            ShoppingCartId = id
         };
 
         const string readItemsSql =
             $"""
              SELECT 
                  * 
-             FROM ShoppingCart, ShoppingCartItems
-             WHERE ShoppingCartItems.ShoppingCartId = ID
-             AND ShoppingCart.UserId=@{nameof(@params.UserId)}
+             FROM ShoppingCartItems
+             WHERE ShoppingCartId=@{nameof(@params.ShoppingCartId)}
              """;
 
         await using var connection = new MySqlConnection(ConnectionString);
         var items = await connection.QueryAsync<ShoppingCartItem>(readItemsSql, @params);
-        return new ShoppingCart(userId, items.ToArray());
+        return new ShoppingCart(id, items.ToArray());
     }
 
     public async ValueTask Save(ShoppingCart shoppingCart)
     {
         var deleteParams = new
         {
-            shoppingCart.UserId
+            ShoppingCartId = shoppingCart.Id
         };
 
         const string deleteAllItemsSql =
             $"""
              DELETE item 
-             FROM ShoppingCartItems item INNER JOIN ShoppingCart cart
-             ON item.ShoppingCartId == cart.ID AND cart.UserId==@{nameof(deleteParams.UserId)}
+             FROM ShoppingCartItems item
+             WHERE item.ShoppingCartId=@{nameof(deleteParams.ShoppingCartId)}
              """;
+
+        object ConvertToAddModel(ShoppingCartItem item) => new
+        {
+            item.ShoppingCartId,
+            item.ProductId,
+            item.Name,
+            item.Description,
+            item.Price.Amount,
+            item.Price.Currency
+        };
 
         const string addAllItemsSql =
             $"""
              INSERT INTO ShoppingCartItems
              (
-                {nameof(ShoppingCartItem.ProductCatalogueId)},
-                {nameof(ShoppingCartItem.ProductName)},
+                {nameof(ShoppingCartItem.ShoppingCartId)},
+                {nameof(ShoppingCartItem.ProductId)},
+                {nameof(ShoppingCartItem.Name)},
                 {nameof(ShoppingCartItem.Description)},
                 {nameof(ShoppingCartItem.Price.Amount)},
                 {nameof(ShoppingCartItem.Price.Currency)}
              ) VALUES 
              (
-                {nameof(ShoppingCartItem.ProductCatalogueId)},
-                {nameof(ShoppingCartItem.ProductName)},
-                {nameof(ShoppingCartItem.Description)},
-                {nameof(ShoppingCartItem.Price.Amount)},
-                {nameof(ShoppingCartItem.Price.Currency)}
+                @{nameof(ShoppingCartItem.ShoppingCartId)},
+                @{nameof(ShoppingCartItem.ProductId)},
+                @{nameof(ShoppingCartItem.Name)},
+                @{nameof(ShoppingCartItem.Description)},
+                @{nameof(ShoppingCartItem.Price.Amount)},
+                @{nameof(ShoppingCartItem.Price.Currency)}
              )
              """;
 
         await using var connection = new MySqlConnection(ConnectionString);
+        await connection.OpenAsync();
         await using var transaction = await connection.BeginTransactionAsync();
         await connection.ExecuteAsync(deleteAllItemsSql, deleteParams, transaction);
-        await connection.ExecuteAsync(addAllItemsSql, shoppingCart.Items, transaction);
+        var addModels = shoppingCart.Items.Select(ConvertToAddModel);
+        await connection.ExecuteAsync(addAllItemsSql, addModels, transaction);
+        await transaction.CommitAsync();
     }
 }

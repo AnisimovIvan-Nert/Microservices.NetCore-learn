@@ -24,6 +24,6 @@ public static class ServiceCollectionExtensions
     {
         return serviceCollection
             .AddScoped<IShoppingCartService, ShoppingCartService>()
-            .AddScoped<IShoppingCartStore, InMemoryShoppingCartStore>();
+            .AddScoped<IShoppingCartStore, ShoppingCartStore>();
     }
 }

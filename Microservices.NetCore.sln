@@ -30,6 +30,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Shopp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart._Shared.ProductCatalogue", "Microservices.NetCore.ShoppingCart._Shared.ProductCatalogue\Microservices.NetCore.ShoppingCart._Shared.ProductCatalogue.csproj", "{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.AspNetCore.ProductCatalogue", "Microservices.NetCore.ShoppingCart.AspNetCore.ProductCatalogue\Microservices.NetCore.ShoppingCart.AspNetCore.ProductCatalogue.csproj", "{8682D822-6D9C-4DD1-9E37-9330A4428A95}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,5 +98,9 @@ Global
 		{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

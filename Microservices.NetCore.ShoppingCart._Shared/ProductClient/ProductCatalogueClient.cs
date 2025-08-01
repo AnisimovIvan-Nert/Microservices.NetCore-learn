@@ -1,6 +1,5 @@
 using System.Text.Json;
 using Microservices.NetCore.Shared.Cache;
-using Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
 using Polly;
 using Polly.Retry;
 
@@ -9,17 +8,17 @@ namespace Microservices.NetCore.ShoppingCart.Shared.ProductClient;
 public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueClient
 {
     //TODO link uri
-    private const string ProductCatalogueBaseUri = "http://localhost:5267";
+    private const string ProductCatalogueBaseUri = "http://localhost:5013";
     private const string ProductPathTemplate = "/products?productIds={0}";
 
-    public ValueTask<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(params int[] productCatalogueIds)
+    public ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItems(params int[] productCatalogueIds)
     {
         var retryPolicy = CreateRetryPolicy();
         var task = retryPolicy.ExecuteAsync(async () => await GetItemsFromCatalogueService(productCatalogueIds));
-        return new ValueTask<IEnumerable<ShoppingCartItem>>(task);
+        return new ValueTask<IEnumerable<ProductCatalogueItem>>(task);
     }
 
-    private async ValueTask<IEnumerable<ShoppingCartItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
+    private async ValueTask<IEnumerable<ProductCatalogueItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
     {
         var response = await RequestProductFromProductCatalogue(productCatalogueIds);
         return await ConvertToShoppingCartItems(response);
@@ -40,19 +39,12 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
         return response;
     }
 
-    private static async ValueTask<IEnumerable<ShoppingCartItem>> ConvertToShoppingCartItems(
+    private static async ValueTask<IEnumerable<ProductCatalogueItem>> ConvertToShoppingCartItems(
         HttpResponseMessage response)
     {
         response.EnsureSuccessStatusCode();
         var responseContent = await response.Content.ReadAsStringAsync();
-        var products = JsonSerializer.Deserialize<List<ProductCatalogueItem>>(responseContent) ?? [];
-        return products.Select(ConvertToShoppingCartItem);
-    }
-
-    private static ShoppingCartItem ConvertToShoppingCartItem(ProductCatalogueItem item)
-    {
-        var id = int.Parse(item.ProductId);
-        return new ShoppingCartItem(id, item.ProductName, item.ProductDescription, item.Price);
+        return JsonSerializer.Deserialize<List<ProductCatalogueItem>>(responseContent) ?? [];
     }
     
     private void CacheResponse(string resource, HttpResponseMessage response)

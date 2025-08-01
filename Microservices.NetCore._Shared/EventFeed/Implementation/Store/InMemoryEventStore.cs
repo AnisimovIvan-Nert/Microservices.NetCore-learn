@@ -5,7 +5,7 @@ public class InMemoryEventStore : IEventStore
     private static long _currentSequenceNumber;
     private static readonly Dictionary<string, List<Event>> _database = [];
 
-    private string _eventType = "";
+    private string _eventType = "default";
     
     public void SetEventType(string eventType)
     {
@@ -27,6 +27,8 @@ public class InMemoryEventStore : IEventStore
         var sequenceNumber = Interlocked.Increment(ref _currentSequenceNumber);
         var currentTime = DateTimeOffset.UtcNow;
         var newEvent = new Event(sequenceNumber, currentTime, eventName, content, _eventType);
+        if (_database.ContainsKey(_eventType) == false)
+            _database[_eventType] = [];
         _database[_eventType].Add(newEvent);
         return ValueTask.CompletedTask;
     }

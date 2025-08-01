@@ -1,6 +1,4 @@
-﻿using Microservices.NetCore.ShoppingCart.Shared.ShoppingCart;
-
-namespace Microservices.NetCore.ShoppingCart.Shared.ProductClient;
+﻿namespace Microservices.NetCore.ShoppingCart.Shared.ProductClient;
 
 public class InMemoryProductCatalogueClient : IProductCatalogueClient
 {
@@ -18,40 +16,27 @@ public class InMemoryProductCatalogueClient : IProductCatalogueClient
             var price = new Money(currency, i);
             var productItem = new ProductCatalogueItem
             {
-                ProductId = i.ToString(),
-                ProductName = nameBase + i,
-                ProductDescription = nameBase + i,
+                Id = i,
+                Name = nameBase + i,
+                Description = nameBase + i,
                 Price = price
             };
             _catalogue.Add(i, productItem);
         }
     }
 
-    public ValueTask<IEnumerable<ShoppingCartItem>> GetShoppingCartItems(params int[] productCatalogueIds)
+    public ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItems(params int[] productCatalogueIds)
     {
         return ValueTask.FromResult(GetItemsFromCatalogue(productCatalogueIds));
     }
 
-    private static IEnumerable<ShoppingCartItem> GetItemsFromCatalogue(int[] productCatalogueIds)
+    private static IEnumerable<ProductCatalogueItem> GetItemsFromCatalogue(int[] productCatalogueIds)
     {
-        var productItems = GetItemsProductCatalogue(productCatalogueIds);
-        return ConvertToShoppingCartItems(productItems);
+        return GetItemsProductCatalogue(productCatalogueIds);
     }
 
     private static IEnumerable<ProductCatalogueItem> GetItemsProductCatalogue(int[] productCatalogueIds)
     {
         return productCatalogueIds.Select(id => _catalogue[id]);
-    }
-
-    private static IEnumerable<ShoppingCartItem> ConvertToShoppingCartItems(
-        IEnumerable<ProductCatalogueItem> productItems)
-    {
-        return productItems.Select(ConvertToShoppingCartItem);
-    }
-
-    private static ShoppingCartItem ConvertToShoppingCartItem(ProductCatalogueItem item)
-    {
-        var id = int.Parse(item.ProductId);
-        return new ShoppingCartItem(id, item.ProductName, item.ProductDescription, item.Price);
     }
 }
