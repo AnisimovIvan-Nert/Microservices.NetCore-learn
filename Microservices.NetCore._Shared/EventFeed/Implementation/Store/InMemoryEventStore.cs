@@ -1,4 +1,6 @@
-﻿namespace Microservices.NetCore.Shared.EventFeed.Implementation.Store;
+﻿using System.Text.Json;
+
+namespace Microservices.NetCore.Shared.EventFeed.Implementation.Store;
 
 public class InMemoryEventStore : IEventStore
 {
@@ -26,7 +28,8 @@ public class InMemoryEventStore : IEventStore
     {
         var sequenceNumber = Interlocked.Increment(ref _currentSequenceNumber);
         var currentTime = DateTimeOffset.UtcNow;
-        var newEvent = new Event(sequenceNumber, currentTime, eventName, content, _eventType);
+        var contentJson = JsonSerializer.Serialize(content);
+        var newEvent = new Event(sequenceNumber, currentTime, eventName, contentJson, _eventType);
         if (_database.ContainsKey(_eventType) == false)
             _database[_eventType] = [];
         _database[_eventType].Add(newEvent);

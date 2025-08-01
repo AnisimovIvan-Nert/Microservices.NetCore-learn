@@ -21,9 +21,16 @@ public class ShoppingCartService(
     
     public async ValueTask<ShoppingCart> PostItems(int id, int[] itemIds)
     {
+        const string addItemEventName = $"{nameof(ShoppingCart)} item added";
+        
         var shoppingCart = await shoppingCartStore.Get(id);
         var productCatalogueItems = await productCatalogue.GetProductCatalogueItems(itemIds);
-        shoppingCart.AddItems(productCatalogueItems, eventFeed);
+        var addedItems = shoppingCart.AddItems(productCatalogueItems);
+        foreach (var addedItem in addedItems)
+        {
+            await eventFeed.Raise(addItemEventName, addedItem);
+        }
+        
         await shoppingCartStore.Save(shoppingCart);
         return shoppingCart;
     }

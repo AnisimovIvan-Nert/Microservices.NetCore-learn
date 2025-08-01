@@ -1,6 +1,6 @@
 using System.Text;
+using System.Text.Json;
 using EventStore.Client;
-using Newtonsoft.Json;
 
 namespace Microservices.NetCore.Shared.EventFeed.Implementation.Store;
 
@@ -24,8 +24,8 @@ public class EventStore : IEventStore
 
         var metaData = new EventMetadata(eventName, DateTimeOffset.Now);
         
-        var contentJson = JsonConvert.SerializeObject(content);
-        var metaDataJson = JsonConvert.SerializeObject(metaData);
+        var contentJson = JsonSerializer.Serialize(content);
+        var metaDataJson = JsonSerializer.Serialize(metaData);
 
         var encodedData = Encoding.UTF8.GetBytes(contentJson);
         var encodedMetaData = Encoding.UTF8.GetBytes(metaDataJson);
@@ -50,15 +50,13 @@ public class EventStore : IEventStore
 
             var contentJson = Encoding.UTF8.GetString(encodedData.Span);
             var metaDataJson = Encoding.UTF8.GetString(encodedMetaData.Span);
-
-            var content = JsonConvert.DeserializeObject(contentJson) 
-                          ?? throw new InvalidOperationException();
-            var metaData = JsonConvert.DeserializeObject<EventMetadata>(metaDataJson) 
+            
+            var metaData = JsonSerializer.Deserialize<EventMetadata>(metaDataJson) 
                            ?? throw new InvalidOperationException();
 
             var sequenceNumber = resolvedEvent.OriginalEventNumber.ToInt64();
 
-            var @event = new Event(sequenceNumber, metaData.OccuredAt, metaData.EventName, content, _eventType);
+            var @event = new Event(sequenceNumber, metaData.OccuredAt, metaData.EventName, contentJson, _eventType);
             result.Add(@event);
         }
 

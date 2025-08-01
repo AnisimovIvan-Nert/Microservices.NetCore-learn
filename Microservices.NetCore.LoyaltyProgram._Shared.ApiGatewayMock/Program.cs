@@ -90,9 +90,10 @@ public class Program
             var response = _client.GetUser(userId).Result;
             if (response.StatusCode != System.Net.HttpStatusCode.OK) 
                 return;
-                
-            var user = JsonSerializer.Deserialize<LoyaltyProgramUser>(
-                response.Content.ReadAsStringAsync().Result) ?? throw new InvalidOperationException();
+
+            var userJson = response.Content.ReadAsStringAsync().Result;
+            var user = JsonSerializer.Deserialize<LoyaltyProgramUser>(userJson, JsonSerializerOptions.Web) 
+                       ?? throw new InvalidOperationException();
             var newInterests = cmd[cmd.IndexOf(' ', 2)..].Split(',').Select(i => i.Trim());
             user.Settings =
                 new LoyaltyProgramSettings

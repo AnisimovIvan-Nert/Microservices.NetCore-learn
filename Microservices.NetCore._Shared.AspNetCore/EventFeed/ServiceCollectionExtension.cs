@@ -1,15 +1,15 @@
 using Microservices.NetCore.Shared.EventFeed;
-using Microservices.NetCore.Shared.EventFeed.Implementation.Store;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservices.NetCore.Shared.AspNetCore.EventFeed;
 
 public static class ServiceCollectionExtension
 {
-    public static IServiceCollection AddEventFeed(this IServiceCollection serviceCollection)
+    public static IServiceCollection AddEventFeed<TStore>(this IServiceCollection serviceCollection)
+        where TStore : class, IEventStore
     {
         return serviceCollection
             .AddScoped<IEventFeed, Shared.EventFeed.Implementation.EventFeed>()
-            .AddScoped<IEventStore, InMemoryEventStore>();
+            .AddScoped<IEventStore, TStore>();
     }
 }

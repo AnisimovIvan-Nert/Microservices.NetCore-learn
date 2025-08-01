@@ -9,16 +9,17 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
 {
     //TODO link uri
     private const string ProductCatalogueBaseUri = "http://localhost:5013";
-    private const string ProductPathTemplate = "/products?productIds={0}";
+    private const string ProductPathTemplate = "/products?{0}";
+    private const string IdsParameterTemplate = "ids={0}";
 
     public ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItems(params int[] productCatalogueIds)
     {
         var retryPolicy = CreateRetryPolicy();
-        var task = retryPolicy.ExecuteAsync(async () => await GetItemsFromCatalogueService(productCatalogueIds));
+        var task = retryPolicy.ExecuteAsync(() => GetItemsFromCatalogueService(productCatalogueIds));
         return new ValueTask<IEnumerable<ProductCatalogueItem>>(task);
     }
 
-    private async ValueTask<IEnumerable<ProductCatalogueItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
+    private async Task<IEnumerable<ProductCatalogueItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
     {
         var response = await RequestProductFromProductCatalogue(productCatalogueIds);
         return await ConvertToShoppingCartItems(response);
@@ -26,7 +27,8 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
 
     private async ValueTask<HttpResponseMessage> RequestProductFromProductCatalogue(int[] productCatalogueIds)
     {
-        var comaSeparatedProductCatalogueIds = string.Join(",", productCatalogueIds);
+        var idsParams = productCatalogueIds.Select(id => string.Format(IdsParameterTemplate, id));
+        var comaSeparatedProductCatalogueIds = string.Join("&", idsParams);
         var productsResource = string.Format(ProductPathTemplate, comaSeparatedProductCatalogueIds);
 
         if (cacheStore.TryGet(productsResource) is HttpResponseMessage cachedResponse)
@@ -35,6 +37,8 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
         using var httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri(ProductCatalogueBaseUri);
         var response = await httpClient.GetAsync(productsResource);
+        
+        response.EnsureSuccessStatusCode();
         CacheResponse(productsResource, response);
         return response;
     }
@@ -44,7 +48,7 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
     {
         response.EnsureSuccessStatusCode();
         var responseContent = await response.Content.ReadAsStringAsync();
-        return JsonSerializer.Deserialize<List<ProductCatalogueItem>>(responseContent) ?? [];
+        return JsonSerializer.Deserialize<IEnumerable<ProductCatalogueItem>>(responseContent, JsonSerializerOptions.Web) ?? [];
     }
     
     private void CacheResponse(string resource, HttpResponseMessage response)

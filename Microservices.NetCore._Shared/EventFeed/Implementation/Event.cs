@@ -4,12 +4,12 @@ public readonly struct Event(
     long sequenceNumber,
     DateTimeOffset occuredAt,
     string name,
-    object content,
+    string contentJson,
     string type)
 {
     public long SequenceNumber { get; } = sequenceNumber;
     public DateTimeOffset OccuredAt { get; } = occuredAt;
     public string Name { get; } = name;
-    public object Content { get; } = content;
+    public string ContentJson { get; } = contentJson;
     public string Type { get; } = type;
 }

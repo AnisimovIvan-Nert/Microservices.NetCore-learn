@@ -21,7 +21,8 @@ public class LoyaltyProgramClient(string loyalProgramMicroserviceBaseUri)
     {
         var method = HttpMethod.Post;
         var requestUri = "/users/";
-        var content = new StringContent(JsonSerializer.Serialize(newUser), Encoding.UTF8, JsonMediaType);
+        var userJson = JsonSerializer.Serialize(newUser, JsonSerializerOptions.Web);
+        var content = new StringContent(userJson, Encoding.UTF8, JsonMediaType);
             
         return await CreateRetryPolicy().ExecuteAsync(() => SendRequest(method, requestUri, content));
     }
@@ -30,7 +31,8 @@ public class LoyaltyProgramClient(string loyalProgramMicroserviceBaseUri)
     {
         var method = HttpMethod.Put;
         var requestUri = $"/users/{user.Id}";
-        var content = new StringContent(JsonSerializer.Serialize(user), Encoding.UTF8, JsonMediaType);
+        var userJson = JsonSerializer.Serialize(user, JsonSerializerOptions.Web);
+        var content = new StringContent(userJson, Encoding.UTF8, JsonMediaType);
             
         return await CreateRetryPolicy().ExecuteAsync(() => SendRequest(method, requestUri, content));
     }
