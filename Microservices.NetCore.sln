@@ -1,36 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.HelloWorld.Nancy", "Microservices.NetCore.HelloWorld.Nancy\Microservices.NetCore.HelloWorld.Nancy.csproj", "{6B82CFE3-1536-431B-8245-BADF8415F872}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.HelloWorld.AspNetCore", "Microservices.NetCore.HelloWorld.AspNetCore\Microservices.NetCore.HelloWorld.AspNetCore.csproj", "{6D49AD24-220E-47B4-88CC-93A40C2888D5}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.Nancy", "Microservices.NetCore.ShoppingCart.Nancy\Microservices.NetCore.ShoppingCart.Nancy.csproj", "{B253C2DE-2F60-42B8-9925-1412E67F640E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared.Nancy", "Microservices.NetCore._Shared.Nancy\Microservices.NetCore._Shared.Nancy.csproj", "{D8A9AAC7-720A-472C-ADDF-89034B246F65}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart._Shared", "Microservices.NetCore.ShoppingCart._Shared\Microservices.NetCore.ShoppingCart._Shared.csproj", "{D831C032-2456-491E-AB73-8B0EBBFFEE91}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.AspNetCore", "Microservices.NetCore.ShoppingCart.AspNetCore\Microservices.NetCore.ShoppingCart.AspNetCore.csproj", "{8CC79092-490E-4E0F-A299-3CCC9624D4CB}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram.Nancy", "Microservices.NetCore.LoyaltyProgram.Nancy\Microservices.NetCore.LoyaltyProgram.Nancy.csproj", "{801BC9ED-AAAD-4151-A216-3D3EC1E40294}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram._Shared", "Microservices.NetCore.LoyaltyProgram._Shared\Microservices.NetCore.LoyaltyProgram._Shared.csproj", "{A34022CC-EFFE-48B1-A915-68D326CF258D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart", "Microservices.NetCore.ShoppingCart\Microservices.NetCore.ShoppingCart.csproj", "{8CC79092-490E-4E0F-A299-3CCC9624D4CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared", "Microservices.NetCore._Shared\Microservices.NetCore._Shared.csproj", "{AA92AE06-88C6-48DF-B3F4-4738C8D5C1DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared.AspNetCore", "Microservices.NetCore._Shared.AspNetCore\Microservices.NetCore._Shared.AspNetCore.csproj", "{5E3A8448-051E-4D5C-91C7-9F031361666E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram.EventConsumer", "Microservices.NetCore.LoyaltyProgram.EventConsumer\Microservices.NetCore.LoyaltyProgram.EventConsumer.csproj", "{1D1798A5-B174-4B4E-BFBB-622E1267825F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram._Shared.EventConsumer", "Microservices.NetCore.LoyaltyProgram._Shared.EventConsumer\Microservices.NetCore.LoyaltyProgram._Shared.EventConsumer.csproj", "{1D1798A5-B174-4B4E-BFBB-622E1267825F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram.ApiGatewayMock", "Microservices.NetCore.LoyaltyProgram.ApiGatewayMock\Microservices.NetCore.LoyaltyProgram.ApiGatewayMock.csproj", "{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram._Shared.ApiGatewayMock", "Microservices.NetCore.LoyaltyProgram._Shared.ApiGatewayMock\Microservices.NetCore.LoyaltyProgram._Shared.ApiGatewayMock.csproj", "{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.ProductCatalogue", "Microservices.NetCore.ShoppingCart.ProductCatalogue\Microservices.NetCore.ShoppingCart.ProductCatalogue.csproj", "{8682D822-6D9C-4DD1-9E37-9330A4428A95}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram.AspNetCore", "Microservices.NetCore.LoyaltyProgram.AspNetCore\Microservices.NetCore.LoyaltyProgram.AspNetCore.csproj", "{8D096FCB-870A-42DC-B33B-26D3B650557B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.Nancy.ProductCatalogue", "Microservices.NetCore.ShoppingCart.Nancy.ProductCatalogue\Microservices.NetCore.ShoppingCart.Nancy.ProductCatalogue.csproj", "{9AFD7A10-58AF-4665-8014-A6DDCD0BE82B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart._Shared.ProductCatalogue", "Microservices.NetCore.ShoppingCart._Shared.ProductCatalogue\Microservices.NetCore.ShoppingCart._Shared.ProductCatalogue.csproj", "{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.AspNetCore.ProductCatalogue", "Microservices.NetCore.ShoppingCart.AspNetCore.ProductCatalogue\Microservices.NetCore.ShoppingCart.AspNetCore.ProductCatalogue.csproj", "{8682D822-6D9C-4DD1-9E37-9330A4428A95}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram", "Microservices.NetCore.LoyaltyProgram\Microservices.NetCore.LoyaltyProgram.csproj", "{596D6548-4D3A-449D-9ECA-EEA3B79D739B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,46 +18,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6B82CFE3-1536-431B-8245-BADF8415F872}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6B82CFE3-1536-431B-8245-BADF8415F872}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6B82CFE3-1536-431B-8245-BADF8415F872}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6B82CFE3-1536-431B-8245-BADF8415F872}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6D49AD24-220E-47B4-88CC-93A40C2888D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6D49AD24-220E-47B4-88CC-93A40C2888D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6D49AD24-220E-47B4-88CC-93A40C2888D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6D49AD24-220E-47B4-88CC-93A40C2888D5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B253C2DE-2F60-42B8-9925-1412E67F640E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D8A9AAC7-720A-472C-ADDF-89034B246F65}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D831C032-2456-491E-AB73-8B0EBBFFEE91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D831C032-2456-491E-AB73-8B0EBBFFEE91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D831C032-2456-491E-AB73-8B0EBBFFEE91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D831C032-2456-491E-AB73-8B0EBBFFEE91}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8CC79092-490E-4E0F-A299-3CCC9624D4CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8CC79092-490E-4E0F-A299-3CCC9624D4CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8CC79092-490E-4E0F-A299-3CCC9624D4CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8CC79092-490E-4E0F-A299-3CCC9624D4CB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{801BC9ED-AAAD-4151-A216-3D3EC1E40294}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{801BC9ED-AAAD-4151-A216-3D3EC1E40294}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{801BC9ED-AAAD-4151-A216-3D3EC1E40294}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{801BC9ED-AAAD-4151-A216-3D3EC1E40294}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A34022CC-EFFE-48B1-A915-68D326CF258D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{AA92AE06-88C6-48DF-B3F4-4738C8D5C1DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{AA92AE06-88C6-48DF-B3F4-4738C8D5C1DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA92AE06-88C6-48DF-B3F4-4738C8D5C1DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA92AE06-88C6-48DF-B3F4-4738C8D5C1DC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5E3A8448-051E-4D5C-91C7-9F031361666E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E3A8448-051E-4D5C-91C7-9F031361666E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E3A8448-051E-4D5C-91C7-9F031361666E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E3A8448-051E-4D5C-91C7-9F031361666E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1D1798A5-B174-4B4E-BFBB-622E1267825F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1D1798A5-B174-4B4E-BFBB-622E1267825F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1D1798A5-B174-4B4E-BFBB-622E1267825F}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -86,21 +34,13 @@ Global
 		{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A38472DA-A591-4A2B-98EF-EEDB855F5C1C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8D096FCB-870A-42DC-B33B-26D3B650557B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9AFD7A10-58AF-4665-8014-A6DDCD0BE82B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9AFD7A10-58AF-4665-8014-A6DDCD0BE82B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9AFD7A10-58AF-4665-8014-A6DDCD0BE82B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9AFD7A10-58AF-4665-8014-A6DDCD0BE82B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D34F3140-EC0B-42CF-AB61-D1FEDFCF6C83}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8682D822-6D9C-4DD1-9E37-9330A4428A95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{596D6548-4D3A-449D-9ECA-EEA3B79D739B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{596D6548-4D3A-449D-9ECA-EEA3B79D739B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{596D6548-4D3A-449D-9ECA-EEA3B79D739B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{596D6548-4D3A-449D-9ECA-EEA3B79D739B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
