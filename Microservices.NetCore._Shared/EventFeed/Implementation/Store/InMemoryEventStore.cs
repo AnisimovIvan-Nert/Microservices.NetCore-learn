@@ -4,19 +4,30 @@ namespace Microservices.NetCore.Shared.EventFeed.Implementation.Store;
 
 public class InMemoryEventStore : IEventStore
 {
-    private static long _currentSequenceNumber;
-    private static readonly Dictionary<string, List<Event>> _database = [];
+    private static long _currentSequenceNumber = -1;
+    private static readonly Dictionary<string, List<Event>> Database = [];
 
-    private string _eventType = "default";
-    
-    public void SetEventType(string eventType)
+    private string _streamName = "default";
+
+    public static void Clear()
     {
-        _eventType = eventType;
+        _currentSequenceNumber = -1;
+        Database.Clear();
+    }
+    
+    public string GetCurrentStoreStream() => _streamName;
+    
+    public void SetStoreStream(string streamName)
+    {
+        _streamName = streamName;
     }
 
     public ValueTask<IEnumerable<Event>> GetEvents(long firstNumber, long lastNumber)
     {
-        var events = _database[_eventType].Where(e => 
+        if (Database.TryGetValue(_streamName, out var value) == false)
+            return ValueTask.FromResult(Enumerable.Empty<Event>());
+        
+        var events = value.Where(e => 
                 e.SequenceNumber >= firstNumber 
                 && e.SequenceNumber <= lastNumber)
             .OrderBy(e => e.SequenceNumber);
@@ -29,10 +40,11 @@ public class InMemoryEventStore : IEventStore
         var sequenceNumber = Interlocked.Increment(ref _currentSequenceNumber);
         var currentTime = DateTimeOffset.UtcNow;
         var contentJson = JsonSerializer.Serialize(content);
-        var newEvent = new Event(sequenceNumber, currentTime, eventName, contentJson, _eventType);
-        if (_database.ContainsKey(_eventType) == false)
-            _database[_eventType] = [];
-        _database[_eventType].Add(newEvent);
+        var newEvent = new Event(sequenceNumber, currentTime, eventName, contentJson, _streamName);
+        
+        if (Database.ContainsKey(_streamName) == false)
+            Database[_streamName] = [];
+        Database[_streamName].Add(newEvent);
         return ValueTask.CompletedTask;
     }
 }

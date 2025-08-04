@@ -18,13 +18,13 @@ public class InMemoryCacheStore : ICacheStore
         if (_cache.TryGetValue(key, out var value) == false)
             return null;
 
-        if (value.ExpiresAt > DateTimeOffset.UtcNow)
+        if (DateTimeOffset.UtcNow > value.ExpiresAt)
         {
             _cache.Remove(key, out _);
             return null;
         }
 
-        return value;
+        return value.Value;
     }
     
     private record CachedData(object Value, DateTimeOffset ExpiresAt);

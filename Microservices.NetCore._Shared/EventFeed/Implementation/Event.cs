@@ -5,11 +5,11 @@ public readonly struct Event(
     DateTimeOffset occuredAt,
     string name,
     string contentJson,
-    string type)
+    string stream)
 {
     public long SequenceNumber { get; } = sequenceNumber;
     public DateTimeOffset OccuredAt { get; } = occuredAt;
     public string Name { get; } = name;
     public string ContentJson { get; } = contentJson;
-    public string Type { get; } = type;
+    public string Stream { get; } = stream;
 }

@@ -1,12 +1,7 @@
-CREATE DATABASE EventStore;
-
-USE EventStore;
-
 CREATE TABLE EventStore(
     ID INT PRIMARY KEY AUTO_INCREMENT,
     OccurredAt TIMESTAMP NOT NULL,
     Name TINYTEXT NOT NULL,
-    Type TINYTEXT NOT NULL,
+    Stream TINYTEXT NOT NULL,
     Content TEXT NOT NULL
 );
-

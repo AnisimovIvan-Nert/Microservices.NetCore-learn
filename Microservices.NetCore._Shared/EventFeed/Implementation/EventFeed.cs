@@ -4,7 +4,7 @@ public class EventFeed(IEventStore eventStore) : IEventFeed
 {
     public void SetEventType(string eventType)
     {
-        eventStore.SetEventType(eventType);
+        eventStore.SetStoreStream(eventType);
     }
 
     public ValueTask<IEnumerable<Event>> Get(long firstEvent, long lastEvent)

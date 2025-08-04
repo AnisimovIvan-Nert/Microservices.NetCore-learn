@@ -12,6 +12,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Shopp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram", "Microservices.NetCore.LoyaltyProgram\Microservices.NetCore.LoyaltyProgram.csproj", "{596D6548-4D3A-449D-9ECA-EEA3B79D739B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared.Tests", "Microservices.NetCore._Shared.Tests\Microservices.NetCore._Shared.Tests.csproj", "{2C016822-8D47-4AA2-9854-1C1A41751CCA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests.Utilities", "Microservices.NetCore.Tests.Utilities\Microservices.NetCore.Tests.Utilities.csproj", "{9D49DDC5-FA4F-4ABD-B9C3-1CB0BBC65DFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests.Utilities.Scripts", "Microservices.NetCore.Tests.Utilities.Scripts\Microservices.NetCore.Tests.Utilities.Scripts.csproj", "{7FCA1A8B-7D3C-472E-8371-7A753F10C439}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests.Fakes", "Microservices.NetCore.Tests.Fakes\Microservices.NetCore.Tests.Fakes.csproj", "{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +50,21 @@ Global
 		{596D6548-4D3A-449D-9ECA-EEA3B79D739B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{596D6548-4D3A-449D-9ECA-EEA3B79D739B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{596D6548-4D3A-449D-9ECA-EEA3B79D739B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2C016822-8D47-4AA2-9854-1C1A41751CCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C016822-8D47-4AA2-9854-1C1A41751CCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C016822-8D47-4AA2-9854-1C1A41751CCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C016822-8D47-4AA2-9854-1C1A41751CCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D49DDC5-FA4F-4ABD-B9C3-1CB0BBC65DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D49DDC5-FA4F-4ABD-B9C3-1CB0BBC65DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D49DDC5-FA4F-4ABD-B9C3-1CB0BBC65DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D49DDC5-FA4F-4ABD-B9C3-1CB0BBC65DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FCA1A8B-7D3C-472E-8371-7A753F10C439}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FCA1A8B-7D3C-472E-8371-7A753F10C439}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FCA1A8B-7D3C-472E-8371-7A753F10C439}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FCA1A8B-7D3C-472E-8371-7A753F10C439}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
