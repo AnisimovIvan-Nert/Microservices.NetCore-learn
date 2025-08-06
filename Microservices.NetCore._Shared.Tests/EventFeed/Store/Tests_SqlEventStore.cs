@@ -1,6 +1,6 @@
 using Microservices.NetCore.Shared.EventFeed;
 using Microservices.NetCore.Shared.EventFeed.Implementation.Store;
-using Microservices.NetCore.Tests.Fakes.ConnectionSource;
+using Microservices.NetCore.Shared.Tests.Fakes.ConnectionSource;
 using Microservices.NetCore.Tests.Utilities.DockerTestContainers.Database;
 using Microservices.NetCore.Tests.Utilities.Scripts;
 

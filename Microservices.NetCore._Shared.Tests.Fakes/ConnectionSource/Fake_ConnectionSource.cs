@@ -1,6 +1,6 @@
 using Microservices.NetCore.Shared.ConnectionSource;
 
-namespace Microservices.NetCore.Tests.Fakes.ConnectionSource;
+namespace Microservices.NetCore.Shared.Tests.Fakes.ConnectionSource;
 
 public class ConnectionStringSourceFake<TTarget>(string connection) 
     : IConnectionStringSource<TTarget>

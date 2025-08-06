@@ -18,7 +18,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests.Utilities.Scripts", "Microservices.NetCore.Tests.Utilities.Scripts\Microservices.NetCore.Tests.Utilities.Scripts.csproj", "{7FCA1A8B-7D3C-472E-8371-7A753F10C439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests.Fakes", "Microservices.NetCore.Tests.Fakes\Microservices.NetCore.Tests.Fakes.csproj", "{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared.Tests.Fakes", "Microservices.NetCore._Shared.Tests.Fakes\Microservices.NetCore._Shared.Tests.Fakes.csproj", "{A1AB4E01-D15B-4012-B1BA-5237282BA905}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,9 +62,9 @@ Global
 		{7FCA1A8B-7D3C-472E-8371-7A753F10C439}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FCA1A8B-7D3C-472E-8371-7A753F10C439}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FCA1A8B-7D3C-472E-8371-7A753F10C439}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DA9CE414-5ED7-40C0-9600-71C1E4AC8A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1AB4E01-D15B-4012-B1BA-5237282BA905}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1AB4E01-D15B-4012-B1BA-5237282BA905}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1AB4E01-D15B-4012-B1BA-5237282BA905}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1AB4E01-D15B-4012-B1BA-5237282BA905}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

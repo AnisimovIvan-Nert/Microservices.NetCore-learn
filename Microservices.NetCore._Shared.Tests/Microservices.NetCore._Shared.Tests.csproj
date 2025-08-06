@@ -22,9 +22,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Microservices.NetCore.Tests.Fakes\Microservices.NetCore.Tests.Fakes.csproj" />
       <ProjectReference Include="..\Microservices.NetCore.Tests.Utilities.Scripts\Microservices.NetCore.Tests.Utilities.Scripts.csproj" />
       <ProjectReference Include="..\Microservices.NetCore.Tests.Utilities\Microservices.NetCore.Tests.Utilities.csproj" />
+      <ProjectReference Include="..\Microservices.NetCore._Shared.Tests.Fakes\Microservices.NetCore._Shared.Tests.Fakes.csproj" />
       <ProjectReference Include="..\Microservices.NetCore._Shared\Microservices.NetCore._Shared.csproj" />
     </ItemGroup>
 
