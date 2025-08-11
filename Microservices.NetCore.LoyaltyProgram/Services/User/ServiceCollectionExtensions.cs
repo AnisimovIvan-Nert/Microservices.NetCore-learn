@@ -1,6 +1,6 @@
-using Microservices.NetCore.LoyaltyProgram.Services.LoyaltyProgramUser.Store;
+using Microservices.NetCore.LoyaltyProgram.Services.User.Store;
 
-namespace Microservices.NetCore.LoyaltyProgram.Services.LoyaltyProgramUser;
+namespace Microservices.NetCore.LoyaltyProgram.Services.User;
 
 public static class ServiceCollectionExtensions
 {

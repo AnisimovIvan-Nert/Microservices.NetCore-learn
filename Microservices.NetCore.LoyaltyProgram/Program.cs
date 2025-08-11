@@ -1,23 +1,31 @@
-using Microservices.NetCore.LoyaltyProgram.Services.LoyaltyProgramUser;
+using Microservices.NetCore.LoyaltyProgram.Services.User;
 using Microservices.NetCore.Shared.EventFeed;
 using Microservices.NetCore.Shared.EventFeed.Implementation.Store;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Microservices.NetCore.LoyaltyProgram;
 
-builder.Services.AddControllers();
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+        builder.Services.AddControllers();
 
-builder.Services
-    .AddEventFeed<InMemoryEventStore>()
-    .AddUsers();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+        builder.Services
+            .AddEventFeed<InMemoryEventStore>()
+            .AddUsers();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+        var app = builder.Build();
 
-app.MapControllers();
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
-app.Run();
+        app.MapControllers();
+
+        app.Run();
+    }
+}
