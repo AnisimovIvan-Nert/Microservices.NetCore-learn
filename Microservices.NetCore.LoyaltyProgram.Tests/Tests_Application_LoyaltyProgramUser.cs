@@ -3,10 +3,13 @@ using System.Net.Http.Json;
 using System.Text.Json;
 using Microservices.NetCore.LoyaltyProgram.Model;
 using Microservices.NetCore.LoyaltyProgram.Services.User.Store;
+using Microservices.NetCore.Tests.Utilities;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Microservices.NetCore.LoyaltyProgram.Tests;
 
+[Trait(Categories.TraitName, Categories.Integration.Base)]
+[Trait(Categories.TraitName, Categories.Integration.InMemoryWebApp)]
 public class ApplicationLoyaltyProgramUserTests : IClassFixture<CustomWebApplicationFactory>
 {
     private const string BaseUri = "users";

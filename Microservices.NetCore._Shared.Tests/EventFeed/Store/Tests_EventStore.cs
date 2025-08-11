@@ -1,10 +1,12 @@
 using Microservices.NetCore.Shared.EventFeed;
 using Microservices.NetCore.Shared.Tests.Fakes.ConnectionSource;
+using Microservices.NetCore.Tests.Utilities;
 using Microservices.NetCore.Tests.Utilities.DockerTestContainers.EventStore;
 
 namespace Microservices.NetCore.Shared.Tests.EventFeed.Store;
 
-[Trait("Category", "Integration")]
+[Trait(Categories.TraitName, Categories.Integration.Base)]
+[Trait(Categories.TraitName, Categories.Integration.Docker)]
 public class EventStoreTests : EventStoreTestBase, IClassFixture<EventStoreFixture>
 {
     private readonly ConnectionStringSourceFake<IEventStore> _connectionSource;

@@ -1,12 +1,14 @@
 using Microservices.NetCore.Shared.EventFeed;
 using Microservices.NetCore.Shared.EventFeed.Implementation.Store;
 using Microservices.NetCore.Shared.Tests.Fakes.ConnectionSource;
+using Microservices.NetCore.Tests.Utilities;
 using Microservices.NetCore.Tests.Utilities.DockerTestContainers.Database;
 using Microservices.NetCore.Tests.Utilities.Scripts;
 
 namespace Microservices.NetCore.Shared.Tests.EventFeed.Store;
 
-[Trait("Category", "Integration")]
+[Trait(Categories.TraitName, Categories.Integration.Base)]
+[Trait(Categories.TraitName, Categories.Integration.Docker)]
 public class SqlEventStoreTests : EventStoreTestBase, IClassFixture<MySqlDatabaseFixture>
 {
     private static readonly string CreateTablesScript;
