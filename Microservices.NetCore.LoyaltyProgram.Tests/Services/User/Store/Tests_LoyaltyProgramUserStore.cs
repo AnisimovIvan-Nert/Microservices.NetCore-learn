@@ -10,7 +10,7 @@ public class LoyaltyProgramUserStoreTests
     public LoyaltyProgramUserStoreTests()
     {
         _store = new LoyaltyProgramUserStore();
-        _store.Clear();
+        LoyaltyProgramUserStore.Clear();
     }
     
     [Fact]

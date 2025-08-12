@@ -6,7 +6,7 @@ public class LoyaltyProgramUserStore : ILoyaltyProgramUserStore
 {
     private static readonly List<LoyaltyProgramUser> Users = [];
 
-    public void Clear()
+    public static void Clear()
     {
         Users.Clear();
     }
