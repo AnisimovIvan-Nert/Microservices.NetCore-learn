@@ -20,15 +20,53 @@ public class ApplicationProductCatalogueTests : IClassFixture<CustomWebApplicati
     }
     
     [Theory]
+    [InlineData(0, 5)]
+    [InlineData(5, 10)]
+    [InlineData(0, 1)]
+    public async Task Products_Get_BatchStart_BatchEnd__ReturnsProductsInBatch(int batchStart, int batchEnd)
+    {
+        const string baseUri = BaseUri + "/batch";
+        
+        var queryBuilder = new QueryBuilder
+        {
+            { nameof(batchStart), batchStart.ToString() },
+            { nameof(batchEnd), batchEnd.ToString() }
+        };
+
+        var uriBuilder = new UriBuilder
+        {
+            Path = baseUri,
+            Query = queryBuilder.ToString()
+        };
+        var uri = uriBuilder.Uri;
+        
+        
+        var response = await _applicationClient.GetAsync(uri);
+
+
+        response.EnsureSuccessStatusCode();
+        Assert.Equal(HttpStatusCode.OK, response.StatusCode);
+        
+        var productData = await response.Content.ReadAsStringAsync();
+        var products = JsonSerializer
+            .Deserialize<IEnumerable<Product>>(productData, JsonSerializerOptions.Web)?
+            .ToArray();
+        Assert.NotNull(products);
+
+        var batchSize = batchEnd - batchStart;
+        Assert.Equal(batchSize, products.Length);
+    }
+    
+    [Theory]
     [InlineData(1, 2, 3)]
     [InlineData(1)]
     [InlineData]
     [InlineData(int.MaxValue, int.MinValue)]
-    public async Task Products_Get__ReturnsProductsByIds(params int[] ids)
+    public async Task Products_Get_Ids__ReturnsProductsByIds(params int[] ids)
     {
         var queryBuilder = new QueryBuilder();
         var idStrings = ids.Select(id => id.ToString());
-        queryBuilder.Add("ids", idStrings);
+        queryBuilder.Add(nameof(ids), idStrings);
 
         var uriBuilder = new UriBuilder
         {
@@ -39,7 +77,7 @@ public class ApplicationProductCatalogueTests : IClassFixture<CustomWebApplicati
         
         
         var response = await _applicationClient.GetAsync(uri);
-
+        
         
         response.EnsureSuccessStatusCode();
         Assert.Equal(HttpStatusCode.OK, response.StatusCode);

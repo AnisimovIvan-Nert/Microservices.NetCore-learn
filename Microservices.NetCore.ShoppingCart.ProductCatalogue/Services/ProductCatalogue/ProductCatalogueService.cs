@@ -5,6 +5,14 @@ namespace Microservices.NetCore.ShoppingCart.ProductCatalogue.Services.ProductCa
 
 public class ProductCatalogueService(IProductStore productStore) : IProductCatalogueService
 {
+    public ValueTask<IEnumerable<Product>> GetBatch(int batchStart, int batchSize)
+    {
+        if (batchStart < 0 || batchSize < 0)
+            throw new InvalidOperationException();
+        
+        return productStore.GetBatch(batchStart, batchSize);
+    }
+
     public ValueTask<IEnumerable<Product>> GetByIds(params int[] ids)
     {
         return productStore.GetByIds(ids);

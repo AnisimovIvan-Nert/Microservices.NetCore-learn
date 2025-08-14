@@ -5,7 +5,7 @@ namespace Microservices.NetCore.ShoppingCart.Clients.ProductCatalogue;
 
 public class InMemoryProductCatalogueClient : IProductCatalogueClient
 {
-    private static readonly Dictionary<int, ProductCatalogueItem> _catalogue;
+    private static readonly Dictionary<int, ProductCatalogueItem> Catalogue;
 
     static InMemoryProductCatalogueClient()
     {
@@ -13,7 +13,7 @@ public class InMemoryProductCatalogueClient : IProductCatalogueClient
         const string currency = "RUB";
         const string nameBase = "Product number ";
 
-        _catalogue = new Dictionary<int, ProductCatalogueItem>();
+        Catalogue = new Dictionary<int, ProductCatalogueItem>();
         for (var i = 0; i < itemsCount; i++)
         {
             var price = new Money(currency, i);
@@ -24,22 +24,19 @@ public class InMemoryProductCatalogueClient : IProductCatalogueClient
                 Description = nameBase + i,
                 Price = price
             };
-            _catalogue.Add(i, productItem);
+            Catalogue.Add(i, productItem);
         }
+    }
+
+    public ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItemsBatch(int start, int size)
+    {
+        var products = Catalogue.Values.Skip(start).Take(size);
+        return ValueTask.FromResult(products);
     }
 
     public ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItems(params int[] productCatalogueIds)
     {
-        return ValueTask.FromResult(GetItemsFromCatalogue(productCatalogueIds));
-    }
-
-    private static IEnumerable<ProductCatalogueItem> GetItemsFromCatalogue(int[] productCatalogueIds)
-    {
-        return GetItemsProductCatalogue(productCatalogueIds);
-    }
-
-    private static IEnumerable<ProductCatalogueItem> GetItemsProductCatalogue(int[] productCatalogueIds)
-    {
-        return productCatalogueIds.Select(id => _catalogue[id]);
+        var products = productCatalogueIds.Select(id => Catalogue[id]);
+        return ValueTask.FromResult(products);
     }
 }

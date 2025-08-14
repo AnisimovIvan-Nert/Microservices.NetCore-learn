@@ -1,6 +1,7 @@
 using System.Text.Json;
 using Microservices.NetCore.Shared.Cache;
 using Microservices.NetCore.ShoppingCart.Models.ProductCatalogue;
+using Microsoft.AspNetCore.Http.Extensions;
 using Polly;
 using Polly.Retry;
 
@@ -10,8 +11,18 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
 {
     //TODO link uri
     private const string ProductCatalogueBaseUri = "http://localhost:5013";
-    private const string ProductPathTemplate = "/products?{0}";
-    private const string IdsParameterTemplate = "ids={0}";
+    private const string ProductUri = "products";
+    private const string IdsParameter = "ids";
+    private const string ProductsBatchUri = ProductUri + "/batch";
+    private const string BatchStartParameter = "batchStart";
+    private const string BatchEndParameter = "batchEnd";
+
+    public ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItemsBatch(int start, int size)
+    {
+        var retryPolicy = CreateRetryPolicy();
+        var task = retryPolicy.ExecuteAsync(() => GetItemsBatchFromCatalogueService(start, size));
+        return new ValueTask<IEnumerable<ProductCatalogueItem>>(task);
+    }
 
     public ValueTask<IEnumerable<ProductCatalogueItem>> GetProductCatalogueItems(params int[] productCatalogueIds)
     {
@@ -20,27 +31,67 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
         return new ValueTask<IEnumerable<ProductCatalogueItem>>(task);
     }
 
-    private async Task<IEnumerable<ProductCatalogueItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
+    private async Task<IEnumerable<ProductCatalogueItem>> GetItemsBatchFromCatalogueService(int start, int size)
     {
-        var response = await RequestProductFromProductCatalogue(productCatalogueIds);
+        var response = await RequestProductsBatchFromProductCatalogue(start, size);
         return await ConvertToShoppingCartItems(response);
     }
-
-    private async ValueTask<HttpResponseMessage> RequestProductFromProductCatalogue(int[] productCatalogueIds)
+    
+    private async Task<IEnumerable<ProductCatalogueItem>> GetItemsFromCatalogueService(int[] productCatalogueIds)
     {
-        var idsParams = productCatalogueIds.Select(id => string.Format(IdsParameterTemplate, id));
-        var comaSeparatedProductCatalogueIds = string.Join("&", idsParams);
-        var productsResource = string.Format(ProductPathTemplate, comaSeparatedProductCatalogueIds);
+        var response = await RequestProductsFromProductCatalogue(productCatalogueIds);
+        return await ConvertToShoppingCartItems(response);
+    }
+    
+    private ValueTask<HttpResponseMessage> RequestProductsBatchFromProductCatalogue(int start, int size)
+    {
+        var end = start + size;
+        var queryBuilder = new QueryBuilder
+        {
+            { BatchStartParameter, start.ToString() },
+            { BatchEndParameter, end.ToString()}
+        };
+        
+        var productsResourceBuilder = new UriBuilder
+        {
+            Path = ProductsBatchUri,
+            Query = queryBuilder.ToString()
+        };
+        var productBatchResource = productsResourceBuilder.Uri;
 
-        if (cacheStore.TryGet(productsResource) is HttpResponseMessage cachedResponse)
+        return RequestFromProductCatalogue(productBatchResource);
+    }
+
+    private ValueTask<HttpResponseMessage> RequestProductsFromProductCatalogue(int[] productCatalogueIds)
+    {
+        var idsParameters = productCatalogueIds.Select(id => id.ToString());
+        var queryBuilder = new QueryBuilder
+        {
+            { IdsParameter, idsParameters }
+        };
+
+        var productsResourceBuilder = new UriBuilder
+        {
+            Path = ProductUri,
+            Query = queryBuilder.ToString()
+        };
+        var productResource = productsResourceBuilder.Uri;
+
+        return RequestFromProductCatalogue(productResource);
+    }
+    
+    private async ValueTask<HttpResponseMessage> RequestFromProductCatalogue(Uri resource)
+    {
+        var cacheKey = resource.ToString();
+        if (cacheStore.TryGet(cacheKey) is HttpResponseMessage cachedResponse)
             return cachedResponse;
 
         using var httpClient = new HttpClient();
         httpClient.BaseAddress = new Uri(ProductCatalogueBaseUri);
-        var response = await httpClient.GetAsync(productsResource);
+        var response = await httpClient.GetAsync(resource);
         
         response.EnsureSuccessStatusCode();
-        CacheResponse(productsResource, response);
+        CacheResponse(cacheKey, response);
         return response;
     }
 
