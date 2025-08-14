@@ -9,6 +9,7 @@ namespace Microservices.NetCore.Shared.Tests.EventFeed.Store;
 
 [Trait(Categories.TraitName, Categories.Integration.Base)]
 [Trait(Categories.TraitName, Categories.Integration.Docker)]
+[Trait(Categories.TraitName, Categories.Slow)]
 public class SqlEventStoreTests : EventStoreTestBase, IClassFixture<MySqlDatabaseFixture>
 {
     private static readonly string CreateTablesScript;

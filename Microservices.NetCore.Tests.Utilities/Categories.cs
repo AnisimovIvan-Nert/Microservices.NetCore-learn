@@ -3,6 +3,8 @@ namespace Microservices.NetCore.Tests.Utilities;
 public static class Categories
 {
     public const string TraitName = "Category";
+
+    public const string Slow = nameof(Slow);
     
     public static class Integration
     {
