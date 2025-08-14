@@ -25,7 +25,7 @@ public class ApplicationLoyaltyProgramUserTests : IClassFixture<CustomWebApplica
                      ?? throw new InvalidOperationException();
 
         if (_userStore is not InMemoryLoyaltyProgramUserStore inMemoryStore)
-            throw new NotImplementedException();q
+            throw new NotImplementedException();
         
         inMemoryStore.Clear();
     }
