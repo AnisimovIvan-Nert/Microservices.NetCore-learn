@@ -5,15 +5,13 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <IsPackable>false</IsPackable>
-        <RootNamespace>Microservices.NetCore.Shared.Tests</RootNamespace>
+        <RootNamespace>Microservices.NetCore.ShoppingCart.ProductCatalogue.Tests</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
         <PackageReference Include="coverlet.collector" Version="6.0.2"/>
-        <PackageReference Include="Dapper" Version="2.1.66" />
         <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="9.0.8" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0"/>
-        <PackageReference Include="MySql.Data" Version="9.4.0" />
         <PackageReference Include="xunit" Version="2.9.2"/>
         <PackageReference Include="xunit.runner.visualstudio" Version="2.8.2"/>
     </ItemGroup>
@@ -23,10 +21,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\Microservices.NetCore.Tests.Utilities.Scripts\Microservices.NetCore.Tests.Utilities.Scripts.csproj" />
+      <ProjectReference Include="..\Microservices.NetCore.ShoppingCart.ProductCatalogue\Microservices.NetCore.ShoppingCart.ProductCatalogue.csproj" />
       <ProjectReference Include="..\Microservices.NetCore.Tests.Utilities\Microservices.NetCore.Tests.Utilities.csproj" />
-      <ProjectReference Include="..\Microservices.NetCore._Shared.Tests.Fakes\Microservices.NetCore._Shared.Tests.Fakes.csproj" />
-      <ProjectReference Include="..\Microservices.NetCore._Shared\Microservices.NetCore._Shared.csproj" />
     </ItemGroup>
 
 </Project>

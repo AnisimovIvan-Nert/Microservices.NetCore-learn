@@ -12,17 +12,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Shopp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram", "Microservices.NetCore.LoyaltyProgram\Microservices.NetCore.LoyaltyProgram.csproj", "{596D6548-4D3A-449D-9ECA-EEA3B79D739B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared.Tests", "Microservices.NetCore._Shared.Tests\Microservices.NetCore._Shared.Tests.csproj", "{2C016822-8D47-4AA2-9854-1C1A41751CCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared._Tests", "Microservices.NetCore._Shared._Tests\Microservices.NetCore._Shared._Tests.csproj", "{2C016822-8D47-4AA2-9854-1C1A41751CCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests.Utilities", "Microservices.NetCore.Tests.Utilities\Microservices.NetCore.Tests.Utilities.csproj", "{9D49DDC5-FA4F-4ABD-B9C3-1CB0BBC65DFE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.Tests.Utilities.Scripts", "Microservices.NetCore.Tests.Utilities.Scripts\Microservices.NetCore.Tests.Utilities.Scripts.csproj", "{7FCA1A8B-7D3C-472E-8371-7A753F10C439}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared.Tests.Fakes", "Microservices.NetCore._Shared.Tests.Fakes\Microservices.NetCore._Shared.Tests.Fakes.csproj", "{A1AB4E01-D15B-4012-B1BA-5237282BA905}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore._Shared._Tests.Fakes", "Microservices.NetCore._Shared._Tests.Fakes\Microservices.NetCore._Shared._Tests.Fakes.csproj", "{A1AB4E01-D15B-4012-B1BA-5237282BA905}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram.Tests", "Microservices.NetCore.LoyaltyProgram.Tests\Microservices.NetCore.LoyaltyProgram.Tests.csproj", "{0C3C0FB5-991D-4697-B429-8D27551940DF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.LoyaltyProgram._Tests", "Microservices.NetCore.LoyaltyProgram._Tests\Microservices.NetCore.LoyaltyProgram._Tests.csproj", "{0C3C0FB5-991D-4697-B429-8D27551940DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.ProductCatalogue.Tests", "Microservices.NetCore.ShoppingCart.ProductCatalogue.Tests\Microservices.NetCore.ShoppingCart.ProductCatalogue.Tests.csproj", "{24D5D5E5-22E7-4222-A8D4-3878A9DEE219}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart.ProductCatalogue._Tests", "Microservices.NetCore.ShoppingCart.ProductCatalogue._Tests\Microservices.NetCore.ShoppingCart.ProductCatalogue._Tests.csproj", "{24D5D5E5-22E7-4222-A8D4-3878A9DEE219}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Microservices.NetCore.ShoppingCart._Tests", "Microservices.NetCore.ShoppingCart._Tests\Microservices.NetCore.ShoppingCart._Tests.csproj", "{EBA34D27-64FB-4E0D-B710-1F68F9F0CC84}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,5 +80,9 @@ Global
 		{24D5D5E5-22E7-4222-A8D4-3878A9DEE219}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{24D5D5E5-22E7-4222-A8D4-3878A9DEE219}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{24D5D5E5-22E7-4222-A8D4-3878A9DEE219}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBA34D27-64FB-4E0D-B710-1F68F9F0CC84}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBA34D27-64FB-4E0D-B710-1F68F9F0CC84}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBA34D27-64FB-4E0D-B710-1F68F9F0CC84}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBA34D27-64FB-4E0D-B710-1F68F9F0CC84}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

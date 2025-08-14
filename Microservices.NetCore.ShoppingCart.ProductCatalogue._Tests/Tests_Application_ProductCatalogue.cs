@@ -8,13 +8,13 @@ namespace Microservices.NetCore.ShoppingCart.ProductCatalogue.Tests;
 
 [Trait(Categories.TraitName, Categories.Integration.Base)]
 [Trait(Categories.TraitName, Categories.Integration.InMemoryWebApp)]
-public class ApplicationLoyaltyProgramUserTests : IClassFixture<CustomWebApplicationFactory>
+public class ApplicationProductCatalogueTests : IClassFixture<CustomWebApplicationFactory>
 {
     private const string BaseUri = "products";
     
     private readonly HttpClient _applicationClient;
     
-    public ApplicationLoyaltyProgramUserTests(CustomWebApplicationFactory applicationFactory)
+    public ApplicationProductCatalogueTests(CustomWebApplicationFactory applicationFactory)
     {
         _applicationClient = applicationFactory.CreateClient();
     }
