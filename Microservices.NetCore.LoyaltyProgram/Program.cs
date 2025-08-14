@@ -1,6 +1,7 @@
 using Microservices.NetCore.LoyaltyProgram.Services.User;
 using Microservices.NetCore.Shared.EventFeed;
 using Microservices.NetCore.Shared.EventFeed.Implementation.Store;
+using Microservices.NetCore.Shared.Store.InMemory;
 
 namespace Microservices.NetCore.LoyaltyProgram;
 
@@ -17,7 +18,8 @@ public class Program
 
         builder.Services
             .AddEventFeed<InMemoryEventStore>()
-            .AddUsers();
+            .AddUsers()
+            .AddInMemoryStoreSource();
 
         var app = builder.Build();
 

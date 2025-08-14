@@ -8,6 +8,6 @@ public static class ServiceCollectionExtensions
     {
         return serviceCollection
             .AddScoped<ILoyaltyProgramUserService, LoyaltyProgramUserService>()
-            .AddScoped<ILoyaltyProgramUserStore, LoyaltyProgramUserStore>();
+            .AddScoped<ILoyaltyProgramUserStore, InMemoryLoyaltyProgramUserStore>();
     }
 }

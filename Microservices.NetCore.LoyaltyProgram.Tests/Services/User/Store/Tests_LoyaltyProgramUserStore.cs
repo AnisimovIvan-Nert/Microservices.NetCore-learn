@@ -1,46 +1,46 @@
-using Microservices.NetCore.LoyaltyProgram.Model;
 using Microservices.NetCore.LoyaltyProgram.Services.User.Store;
+using Microservices.NetCore.Shared.Store.InMemory;
 
 namespace Microservices.NetCore.LoyaltyProgram.Tests.Services.User.Store;
 
-public class LoyaltyProgramUserStoreTests
+public class InMemoryLoyaltyProgramUserStoreTests
 {
-    private readonly LoyaltyProgramUserStore _store;
+    private readonly InMemoryLoyaltyProgramUserStore _store;
     
-    public LoyaltyProgramUserStoreTests()
+    public InMemoryLoyaltyProgramUserStoreTests()
     {
-        _store = new LoyaltyProgramUserStore();
-        LoyaltyProgramUserStore.Clear();
+        var storeSource = new InMemoryStoreSource();
+        _store = new InMemoryLoyaltyProgramUserStore(storeSource);
     }
     
     [Fact]
     public async Task Create__GenerateId_And_AddUserToStore()
     {
-        var user = CreateDefaultUser();
+        var user = LoyaltyProgramUserFactory.CreateDefault();
         var defaultId = user.Id;
 
         var createdUserId = await _store.Create(user);
         
         var storedUser = await _store.Get(createdUserId);
-        AssertEqualDefaultUser(storedUser);
+        LoyaltyProgramUserFactory.AssertEqualDefault(storedUser);
         Assert.NotEqual(defaultId, storedUser.Id);
     }
 
     [Fact]
     public async Task Get_ReturnUserById()
     {
-        var user = CreateDefaultUser();
+        var user = LoyaltyProgramUserFactory.CreateDefault();
         var createdUserId = await _store.Create(user);
         
         var storedUser = await _store.Get(createdUserId);
         
-        AssertEqualDefaultUser(storedUser);
+        LoyaltyProgramUserFactory.AssertEqualDefault(storedUser);
     }
     
     [Fact]
     public async Task Get_WithInvalidId_ThrowInvalidOperationException()
     {
-        var user = CreateDefaultUser();
+        var user = LoyaltyProgramUserFactory.CreateDefault();
         var createdUserId = await _store.Create(user);
         var id = createdUserId + 1;
 
@@ -50,19 +50,19 @@ public class LoyaltyProgramUserStoreTests
     [Fact]
     public async Task TryGet_ReturnUserById()
     {
-        var user = CreateDefaultUser();
+        var user = LoyaltyProgramUserFactory.CreateDefault();
         var createdUserId = await _store.Create(user);
         
         var storedUser = await _store.TryGet(createdUserId);
 
         Assert.NotNull(storedUser);
-        AssertEqualDefaultUser(storedUser);
+        LoyaltyProgramUserFactory.AssertEqualDefault(storedUser);
     }
     
     [Fact]
     public async Task TryGet_WithInvalidId_ReturnNull()
     {
-        var user = CreateDefaultUser();
+        var user = LoyaltyProgramUserFactory.CreateDefault();
         var createdUserId = await _store.Create(user);
         var id = createdUserId + 1;
         
@@ -76,10 +76,10 @@ public class LoyaltyProgramUserStoreTests
     {
         const string newName = "newName";
         
-        var user = CreateDefaultUser();
+        var user = LoyaltyProgramUserFactory.CreateDefault();
         var createdUserId = await _store.Create(user);
 
-        var newUser = CreateDefaultUser();
+        var newUser = LoyaltyProgramUserFactory.CreateDefault();
         newUser.Name = newName;
         var result = await _store.Update(createdUserId, newUser);
 
@@ -91,7 +91,7 @@ public class LoyaltyProgramUserStoreTests
     [Fact]
     public async Task Update_WithInvalidId_ReturnFalse()
     {
-        var user = CreateDefaultUser();
+        var user = LoyaltyProgramUserFactory.CreateDefault();
         var createdUserId = await _store.Create(user);
         var id = createdUserId + 1;
 
@@ -108,7 +108,7 @@ public class LoyaltyProgramUserStoreTests
         var createdUserIds = new int[CreationCount];
         for (var i = 0; i < CreationCount; i++)
         {
-            var user = CreateDefaultUser();
+            var user = LoyaltyProgramUserFactory.CreateDefault();
             createdUserIds[i] = await _store.Create(user);
         }
         
@@ -122,7 +122,7 @@ public class LoyaltyProgramUserStoreTests
         var createdUserIds = new int[CreationCount];
         for (var i = 0; i < CreationCount; i++)
         {
-            var user = CreateDefaultUser();
+            var user = LoyaltyProgramUserFactory.CreateDefault();
             createdUserIds[i] = await _store.Create(user);
         }
 
@@ -131,26 +131,5 @@ public class LoyaltyProgramUserStoreTests
         Assert.Equal(createdUserIds.Length, storedUsersIds.Length);
         foreach (var createdUserId in createdUserIds)
             Assert.Contains(createdUserId, storedUsersIds);
-    }
-    
-    private const string DefaultName = "defaultName";
-    
-    private static LoyaltyProgramUser CreateDefaultUser()
-    {
-        return new LoyaltyProgramUser
-        {
-            Name = DefaultName,
-            Settings = new LoyaltyProgramSettings
-            {
-                Interests = []
-            }
-        };
-    }
-
-    private static void AssertEqualDefaultUser(LoyaltyProgramUser user)
-    {
-        Assert.Equal(DefaultName, user.Name);
-        Assert.Equal(0, user.LoyaltyPoints);
-        Assert.Empty(user.Settings.Interests);
     }
 }

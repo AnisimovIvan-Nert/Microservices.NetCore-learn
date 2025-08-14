@@ -18,17 +18,19 @@ public class ApplicationEventFeedTests : IClassFixture<CustomWebApplicationFacto
     private const string BaseEventUri = "events";
 
     private readonly HttpClient _applicationClient;
-    private readonly IEventStore _eventStore;
+    private readonly InMemoryEventStore _eventStore;
 
     public ApplicationEventFeedTests(CustomWebApplicationFactory applicationFactory)
     {
         _applicationClient = applicationFactory.CreateClient();
         var testScope = applicationFactory.Services.CreateScope();
-        _eventStore = testScope.ServiceProvider.GetService<IEventStore>()
+        var eventStore = testScope.ServiceProvider.GetService<IEventStore>()
                       ?? throw new InvalidOperationException();
 
-        if (_eventStore is not InMemoryEventStore)
+        if (eventStore is not InMemoryEventStore inMemoryEvent)
             throw new NotImplementedException();
+
+        _eventStore = inMemoryEvent;
 
         ClearEvents();
     }
@@ -107,13 +109,13 @@ public class ApplicationEventFeedTests : IClassFixture<CustomWebApplicationFacto
 
 
         rangeStart = 5;
-        rangeEnd = actual - 1;
+        rangeEnd = actual;
 
         foreach (var sendStart in new[] { false, true })
         {
             foreach (var sendEnd in new[] { false, true })
             {
-                var expected = sendStart ? rangeEnd - rangeStart + 1 : actual;
+                var expected = sendStart ? rangeEnd - rangeStart : actual;
                 data.Add(actual, expected, rangeStart, rangeEnd, sendStart, sendEnd);
             }
         }
@@ -208,8 +210,8 @@ public class ApplicationEventFeedTests : IClassFixture<CustomWebApplicationFacto
         }
     }
 
-    private static void ClearEvents()
+    private void ClearEvents()
     {
-        InMemoryEventStore.Clear();
+        _eventStore.Clear();
     }
 }

@@ -24,10 +24,10 @@ public class ApplicationLoyaltyProgramUserTests : IClassFixture<CustomWebApplica
         _userStore = testScope.ServiceProvider.GetService<ILoyaltyProgramUserStore>()
                      ?? throw new InvalidOperationException();
 
-        if (_userStore is not LoyaltyProgramUserStore)
-            throw new NotImplementedException();
+        if (_userStore is not InMemoryLoyaltyProgramUserStore inMemoryStore)
+            throw new NotImplementedException();q
         
-        LoyaltyProgramUserStore.Clear();
+        inMemoryStore.Clear();
     }
     
     [Fact]

@@ -1,18 +1,32 @@
 ﻿using System.Text.Json;
+using Microservices.NetCore.Shared.Store;
+using Microservices.NetCore.Shared.ValueGenerators;
 
 namespace Microservices.NetCore.Shared.EventFeed.Implementation.Store;
 
 public class InMemoryEventStore : IEventStore
 {
-    private static long _currentSequenceNumber = -1;
-    private static readonly Dictionary<string, List<Event>> Database = [];
-
+    private readonly IStore<string, List<Event>> _store;
+    private readonly IValueGenerator<long> _sequenceGenerator;
     private string _streamName = "default";
 
-    public static void Clear()
+    public InMemoryEventStore(IStoreSource storeSource)
     {
-        _currentSequenceNumber = -1;
-        Database.Clear();
+        _store = storeSource.GetStore<string, List<Event>>(nameof(InMemoryEventStore));
+        var generators = storeSource.GetOrLinkGenerators(_store, CreateGenerators);
+        _sequenceGenerator = (IValueGenerator<long>)generators.Single();
+        return;
+
+        IReadOnlyCollection<IValueGenerator> CreateGenerators()
+        {
+            return [new LongGenerator()];
+        }
+    }
+
+    public void Clear()
+    {
+        _store.Clear();
+        _sequenceGenerator.Reset();
     }
     
     public string GetCurrentStoreStream() => _streamName;
@@ -24,10 +38,11 @@ public class InMemoryEventStore : IEventStore
 
     public ValueTask<IEnumerable<Event>> GetEvents(long firstNumber, long lastNumber)
     {
-        if (Database.TryGetValue(_streamName, out var value) == false)
+        var eventCollection = _store.Get(_streamName);
+        if (eventCollection == null)
             return ValueTask.FromResult(Enumerable.Empty<Event>());
         
-        var events = value.Where(e => 
+        var events = eventCollection.Where(e => 
                 e.SequenceNumber >= firstNumber 
                 && e.SequenceNumber <= lastNumber)
             .OrderBy(e => e.SequenceNumber);
@@ -37,14 +52,18 @@ public class InMemoryEventStore : IEventStore
 
     public ValueTask Raise(string eventName, object content)
     {
-        var sequenceNumber = Interlocked.Increment(ref _currentSequenceNumber);
+        var sequenceNumber = _sequenceGenerator.GenerateNext();
         var currentTime = DateTimeOffset.UtcNow;
         var contentJson = JsonSerializer.Serialize(content);
         var newEvent = new Event(sequenceNumber, currentTime, eventName, contentJson, _streamName);
         
-        if (Database.ContainsKey(_streamName) == false)
-            Database[_streamName] = [];
-        Database[_streamName].Add(newEvent);
+        var eventCollection = _store.Get(_streamName);
+        if (eventCollection == null)
+        {
+            eventCollection = [];
+            _store.Add(_streamName, eventCollection);
+        }
+        eventCollection.Add(newEvent);
         return ValueTask.CompletedTask;
     }
 }

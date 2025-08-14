@@ -10,6 +10,7 @@ public static class LoyaltyProgramUserFactory
     {
         return new LoyaltyProgramUser
         {
+            Id = -1,
             Name = DefaultName,
             Settings = new LoyaltyProgramSettings
             {

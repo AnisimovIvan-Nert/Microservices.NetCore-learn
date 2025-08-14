@@ -5,12 +5,12 @@ namespace Microservices.NetCore.LoyaltyProgram.EventConsumer;
 
 public class EventSubscriberService(ILogger<EventSubscriberService> logger) : BackgroundService
 {
-    private const long ChunkSize = 100;
+    private const int ChunkSize = 100;
     private const int RepeatIntervalSeconds = 5;
     //TODO link uri
     private const string LoyaltyProgramBaseUri = "http://localhost:5028";
     
-    private long _start;
+    private int _start;
 
     protected override async Task ExecuteAsync(CancellationToken cancellationToken)
     {

@@ -73,7 +73,8 @@ public abstract class EventStoreTestBase
     }
     
     [Theory]
-    [InlineData(1, 0, 1, 1)]
+    [InlineData(1, 0, 0, 1)]
+    [InlineData(2, 0, 1, 2)]
     [InlineData(5, 0, 10, 5)]
     [InlineData(10, 0, 9, 10)]
     [InlineData(10, 0, 5, 6)]
@@ -91,9 +92,9 @@ public abstract class EventStoreTestBase
     }
 
     [Theory]
-    [InlineData(1, 5, 5, 10)]
-    [InlineData(2, 0, 0, 10)]
-    public async Task GetEvents_WithInvalidRange_ReturnEmpty(int testId, int eventCount, int rangeStart, int rangeEnd)
+    [InlineData(5, 5, 10)]
+    [InlineData(0, 0, 10)]
+    public async Task GetEvents_WithInvalidRange_ReturnEmpty(int eventCount, int rangeStart, int rangeEnd)
     {
         var store = await CreateEventStore();
         store.SetStoreStream(nameof(Raise_Multiple_AddMultipleEvent) + Guid.NewGuid());
