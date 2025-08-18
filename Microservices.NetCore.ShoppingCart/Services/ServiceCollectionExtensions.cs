@@ -1,6 +1,7 @@
 using Microservices.NetCore.Shared.Cache;
 using Microservices.NetCore.Shared.EventFeed;
 using Microservices.NetCore.Shared.EventFeed.Implementation.Store;
+using Microservices.NetCore.Shared.Store.InMemory;
 using Microservices.NetCore.ShoppingCart.Clients.ProductCatalogue;
 using Microservices.NetCore.ShoppingCart.Services.ShoppingCart;
 using Microservices.NetCore.ShoppingCart.Services.ShoppingCart.Store;
@@ -15,7 +16,8 @@ public static class ServiceCollectionExtensions
             .AddEventFeed<SqlEventStore>()
             .AddCache()
             .AddProductClient()
-            .AddShoppingCart();
+            .AddShoppingCart()
+            .AddInMemoryStoreSource();
     }
     
     private static IServiceCollection AddProductClient(this IServiceCollection serviceCollection)
