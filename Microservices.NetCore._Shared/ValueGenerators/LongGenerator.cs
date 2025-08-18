@@ -1,9 +1,16 @@
 namespace Microservices.NetCore.Shared.ValueGenerators;
 
-public class LongGenerator(long startValue = 0) : IValueGenerator<long>
+public class LongGenerator : IValueGenerator<long>
 {
-    private long _next = startValue;
-    
+    private long _next;
+    private readonly long _startValue;
+
+    public LongGenerator(long startValue = 0)
+    {
+        _startValue = startValue;
+        _next = startValue;
+    }
+
     public long GenerateNext()
     {
         var next = Interlocked.Increment(ref _next);
@@ -12,6 +19,6 @@ public class LongGenerator(long startValue = 0) : IValueGenerator<long>
     
     public void Reset()
     {
-        _next = startValue;
+        _next = _startValue;
     }
 }

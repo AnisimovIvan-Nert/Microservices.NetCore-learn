@@ -6,7 +6,7 @@ public class ShoppingCart(int id, params ShoppingCartItem[] items)
 {
     private readonly HashSet<ShoppingCartItem> _items = items.ToHashSet();
 
-    public int Id { get; } = id;
+    public int Id => id;
     public IEnumerable<ShoppingCartItem> Items => _items;
 
     public IEnumerable<ShoppingCartItem> AddItems(IEnumerable<ProductCatalogueItem> productCatalogueItems)

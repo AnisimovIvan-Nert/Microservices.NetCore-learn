@@ -1,9 +1,16 @@
 namespace Microservices.NetCore.Shared.ValueGenerators;
 
-public class IntGenerator(int startValue = 0) : IValueGenerator<int>
+public class IntGenerator : IValueGenerator<int>
 {
-    private int _next = startValue;
-    
+    private int _next;
+    private readonly int _startValue;
+
+    public IntGenerator(int startValue = 0)
+    {
+        _startValue = startValue;
+        _next = startValue;
+    }
+
     public int GenerateNext()
     {
         var next = Interlocked.Increment(ref _next);
@@ -12,6 +19,6 @@ public class IntGenerator(int startValue = 0) : IValueGenerator<int>
 
     public void Reset()
     {
-        _next = startValue;
+        _next = _startValue;
     }
 }
