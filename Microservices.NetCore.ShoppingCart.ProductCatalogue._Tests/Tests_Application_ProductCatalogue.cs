@@ -11,7 +11,6 @@ namespace Microservices.NetCore.ShoppingCart.ProductCatalogue.Tests;
 public class ApplicationProductCatalogueTests : IClassFixture<CustomWebApplicationFactory>
 {
     private const string BaseUri = "products";
-    
     private readonly HttpClient _applicationClient;
     
     public ApplicationProductCatalogueTests(CustomWebApplicationFactory applicationFactory)

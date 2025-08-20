@@ -1,5 +1,7 @@
 using Microservices.NetCore.ShoppingCart.ProductCatalogue.Services;
 
+namespace Microservices.NetCore.ShoppingCart.ProductCatalogue;
+
 public class Program
 {
     public static void Main(string[] args)

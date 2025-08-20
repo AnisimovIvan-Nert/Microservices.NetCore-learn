@@ -1,30 +1,36 @@
-using System.Collections.Concurrent;
+using Microservices.NetCore.Shared.Store;
 
 namespace Microservices.NetCore.Shared.Cache;
 
 public class InMemoryCacheStore : ICacheStore
 {
-    private static readonly ConcurrentDictionary<string, CachedData> _cache = new();      
+    private readonly IStore<string, CachedData> _store;
+
+    public InMemoryCacheStore(IStoreSource storeSource)
+    {
+        _store = storeSource.GetStore<string, CachedData>(nameof(InMemoryCacheStore));
+    }
       
     public void Add(string key, object value, TimeSpan timeToLive)
     {
         var expiresAt = DateTimeOffset.UtcNow.Add(timeToLive);
         var cachedData = new CachedData(value, expiresAt);
-        _cache[key] = cachedData;
+        _store.Add(key, cachedData);
     }
 
     public object? TryGet(string key)
     {
-        if (_cache.TryGetValue(key, out var value) == false)
+        var cachedValue = _store.Get(key);
+        if (cachedValue == null)
             return null;
 
-        if (DateTimeOffset.UtcNow > value.ExpiresAt)
+        if (DateTimeOffset.UtcNow > cachedValue.ExpiresAt)
         {
-            _cache.Remove(key, out _);
+            _store.Remove(key);
             return null;
         }
 
-        return value.Value;
+        return cachedValue.Value;
     }
     
     private record CachedData(object Value, DateTimeOffset ExpiresAt);

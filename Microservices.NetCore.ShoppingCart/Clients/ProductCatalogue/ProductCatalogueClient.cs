@@ -1,5 +1,6 @@
 using System.Text.Json;
 using Microservices.NetCore.Shared.Cache;
+using Microservices.NetCore.Shared.ConnectionSource;
 using Microservices.NetCore.ShoppingCart.Models.ProductCatalogue;
 using Microsoft.AspNetCore.Http.Extensions;
 using Polly;
@@ -7,10 +8,11 @@ using Polly.Retry;
 
 namespace Microservices.NetCore.ShoppingCart.Clients.ProductCatalogue;
 
-public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueClient
+public class ProductCatalogueClient(
+    ICacheStore cacheStore, 
+    IConnectionStringSource<IProductCatalogueClient> connectionStringSource) 
+    : IProductCatalogueClient
 {
-    //TODO link uri
-    private const string ProductCatalogueBaseUri = "http://localhost:5013";
     private const string ProductUri = "products";
     private const string IdsParameter = "ids";
     private const string ProductsBatchUri = ProductUri + "/batch";
@@ -86,8 +88,9 @@ public class ProductCatalogueClient(ICacheStore cacheStore) : IProductCatalogueC
         if (cacheStore.TryGet(cacheKey) is HttpResponseMessage cachedResponse)
             return cachedResponse;
 
+        var connectionString = await connectionStringSource.GetConnectionAsync();
         using var httpClient = new HttpClient();
-        httpClient.BaseAddress = new Uri(ProductCatalogueBaseUri);
+        httpClient.BaseAddress = new Uri(connectionString);
         var response = await httpClient.GetAsync(resource);
         
         response.EnsureSuccessStatusCode();

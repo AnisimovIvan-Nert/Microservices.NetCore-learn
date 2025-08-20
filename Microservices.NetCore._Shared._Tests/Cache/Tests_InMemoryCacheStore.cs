@@ -1,5 +1,5 @@
-using System.ComponentModel;
 using Microservices.NetCore.Shared.Cache;
+using Microservices.NetCore.Shared.Store.InMemory;
 
 namespace Microservices.NetCore.Shared.Tests.Cache;
 
@@ -9,17 +9,23 @@ public class InMemoryCacheStoreTests
     private const string Value = "Value";
     private const string InvalidKey = "InvalidKey";
     
-    private static readonly TimeSpan NonZeroTimeToLive = TimeSpan.FromMilliseconds(1);
+    private static readonly TimeSpan NonZeroTimeToLive = TimeSpan.FromMilliseconds(100);
     private static readonly TimeSpan ZeroTimeToLive = TimeSpan.FromMilliseconds(0);
+
+    private readonly InMemoryCacheStore _cacheStore;
+    
+    public InMemoryCacheStoreTests()
+    {
+        var storeSource = new InMemoryStoreSource();
+        _cacheStore = new InMemoryCacheStore(storeSource);
+    }
     
     [Fact]
     public void Add_WithNonZeroTimeToLive_AddValueToCache()
     {
-        var store = new InMemoryCacheStore();
-        
-        store.Add(Key, Value, NonZeroTimeToLive);
+        _cacheStore.Add(Key, Value, NonZeroTimeToLive);
 
-        var storedValue = store.TryGet(Key);
+        var storedValue = _cacheStore.TryGet(Key);
         Assert.NotNull(storedValue);
         Assert.Equal(Value, storedValue);
     }
@@ -27,21 +33,18 @@ public class InMemoryCacheStoreTests
     [Fact]
     public void Add_WithZeroTimeToLive_AddedValueImmediatelyExpired()
     {
-        var store = new InMemoryCacheStore();
-        
-        store.Add(Key, Value, ZeroTimeToLive);
+        _cacheStore.Add(Key, Value, ZeroTimeToLive);
 
-        var storedValue = store.TryGet(Key);
+        var storedValue = _cacheStore.TryGet(Key);
         Assert.Null(storedValue);
     }
     
     [Fact]
     public void TryGet_WithValidCache_ReturnValue()
     {
-        var store = new InMemoryCacheStore();
-        store.Add(Key, Value, NonZeroTimeToLive);
+        _cacheStore.Add(Key, Value, NonZeroTimeToLive);
 
-        var storedValue = store.TryGet(Key);
+        var storedValue = _cacheStore.TryGet(Key);
         Assert.NotNull(storedValue);
         Assert.Equal(Value, storedValue);
     }
@@ -49,22 +52,20 @@ public class InMemoryCacheStoreTests
     [Fact]
     public void TryGet_WithInvalidKey_ReturnNull()
     {
-        var store = new InMemoryCacheStore();
-        store.Add(Key, Value, NonZeroTimeToLive);
+        _cacheStore.Add(Key, Value, NonZeroTimeToLive);
 
-        var storedValue = store.TryGet(InvalidKey);
+        var storedValue = _cacheStore.TryGet(InvalidKey);
         Assert.Null(storedValue);
     }
 
     [Fact]
     public async Task TryGet_WithExpiredCache_ReturnNull()
     {
-        var store = new InMemoryCacheStore();
-        store.Add(Key, Value, NonZeroTimeToLive);
+        _cacheStore.Add(Key, Value, NonZeroTimeToLive);
         
-        await Task.Delay(NonZeroTimeToLive);
+        await Task.Delay(NonZeroTimeToLive + TimeSpan.FromMilliseconds(1));
 
-        var storedValue = store.TryGet(Key);
+        var storedValue = _cacheStore.TryGet(Key);
         Assert.Null(storedValue);
     }
 }

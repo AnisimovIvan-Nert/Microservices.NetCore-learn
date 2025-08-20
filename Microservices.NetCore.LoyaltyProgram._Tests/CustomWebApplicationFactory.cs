@@ -5,6 +5,7 @@ using Microservices.NetCore.Shared.Store.InMemory;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace Microservices.NetCore.LoyaltyProgram.Tests;
 
@@ -21,6 +22,6 @@ public class CustomWebApplicationFactory
             services.AddSingleton<IStoreSource, InMemoryStoreSource>();
         });
 
-        builder.UseEnvironment("Development");
+        builder.UseEnvironment(Environments.Development);
     }
 }

@@ -1,19 +1,27 @@
 using Microservices.NetCore.ShoppingCart.Services;
 
-var builder = WebApplication.CreateBuilder(args);
+namespace Microservices.NetCore.ShoppingCart;
 
-builder.Services.AddControllers();
+public class Program
+{
+    public static void Main(string[] args)
+    {
+        var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
+        builder.Services.AddControllers();
 
-builder.Services.AddShoppingCartServices();
+        builder.Services.AddEndpointsApiExplorer();
+        builder.Services.AddSwaggerGen();
 
-var app = builder.Build();
+        builder.Services.AddShoppingCartServices();
 
-app.UseSwagger();
-app.UseSwaggerUI();
+        var app = builder.Build();
 
-app.MapControllers();
+        app.UseSwagger();
+        app.UseSwaggerUI();
 
-app.Run();
+        app.MapControllers();
+
+        app.Run();
+    }
+}
